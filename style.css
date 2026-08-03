@@ -190,3 +190,19 @@ color:white;
 padding:8px 15px;
 border-radius:20px;
 }
+.avatar{
+position:relative;
+}
+
+.avatar img{
+width:80px;
+height:80px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.avatar input{
+width:90px;
+font-size:10px;
+margin-top:5px;
+}
