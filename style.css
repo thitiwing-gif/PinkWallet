@@ -221,3 +221,27 @@ box-shadow:0 6px 18px rgba(0,0,0,.08);
 text-align:center;
 
 }
+.page{
+
+display:none;
+
+background:white;
+margin:20px;
+padding:20px;
+border-radius:20px;
+
+}
+
+#fullHistory{
+
+list-style:none;
+padding:0;
+
+}
+
+#fullHistory li{
+
+padding:15px;
+border-bottom:1px solid #eee;
+
+}
