@@ -3404,3 +3404,14 @@ console.log(
 console.log(
 "=============================="
 );
+function closeModal(){
+
+let modal=document.getElementById("modalBox");
+
+if(modal){
+
+modal.style.display="none";
+
+}
+
+}
