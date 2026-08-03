@@ -3327,8 +3327,18 @@ document.addEventListener(
 "DOMContentLoaded",
 function(){
 
-
 appReady();
+
+
+let loading =
+document.getElementById("loading");
+
+
+if(loading){
+
+loading.style.display="none";
+
+}
 
 
 });
