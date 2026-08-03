@@ -1,6 +1,7 @@
 
 *{
 box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
 
 
@@ -10,16 +11,17 @@ margin:0;
 
 background:#f7f7fb;
 
-font-family:Arial,sans-serif;
+color:#333;
 
 padding-bottom:90px;
 
 }
 
 
-/* Login */
 
-#loginPage{
+/* LOGIN */
+
+.login-page{
 
 height:100vh;
 
@@ -42,18 +44,20 @@ background:linear-gradient(
 }
 
 
-#loginPage h1{
+
+.login-page h1{
 
 color:white;
 
-font-size:36px;
+font-size:40px;
 
 }
 
 
-#loginPage input{
 
-width:260px;
+.login-page input{
+
+width:280px;
 
 padding:15px;
 
@@ -66,25 +70,40 @@ font-size:16px;
 }
 
 
-#loginPage button{
 
-background:white;
-
-color:#ff5aa5;
+button{
 
 border:none;
 
-padding:15px 40px;
-
-border-radius:25px;
-
-font-weight:bold;
+cursor:pointer;
 
 }
 
 
 
-/* App */
+.login-page button{
+
+padding:15px 40px;
+
+border-radius:25px;
+
+background:white;
+
+color:#ff5aa5;
+
+font-weight:bold;
+
+font-size:16px;
+
+}
+
+
+
+
+
+
+/* APP */
+
 
 #app{
 
@@ -95,7 +114,10 @@ display:none;
 
 
 
-/* Header */
+
+
+/* HEADER */
+
 
 .header{
 
@@ -105,9 +127,7 @@ background:linear-gradient(
 #ff8ac8
 );
 
-padding:30px 20px;
-
-color:white;
+padding:25px 20px;
 
 border-bottom-left-radius:35px;
 
@@ -119,8 +139,9 @@ justify-content:space-between;
 
 align-items:center;
 
-}
+color:white;
 
+}
 
 
 
@@ -133,7 +154,6 @@ align-items:center;
 gap:15px;
 
 }
-
 
 
 
@@ -153,7 +173,6 @@ background:white;
 
 
 
-
 .avatar img{
 
 width:100%;
@@ -166,27 +185,19 @@ object-fit:cover;
 
 
 
-
-
 .notification{
 
 font-size:30px;
 
-position:relative;
-
 cursor:pointer;
+
+position:relative;
 
 }
 
 
 
 .notification span{
-
-position:absolute;
-
-right:-10px;
-
-top:-10px;
 
 background:red;
 
@@ -198,15 +209,19 @@ padding:5px;
 
 border-radius:50%;
 
+position:absolute;
+
+top:-10px;
+
+right:-10px;
+
 }
 
 
 
 
 
-
-
-/* Wallet Card */
+/* WALLET CARD */
 
 
 .wallet-card{
@@ -225,25 +240,39 @@ box-shadow:0 10px 25px rgba(0,0,0,.1);
 
 
 
-.card-top{
+.wallet-title{
 
 display:flex;
 
 justify-content:space-between;
 
+align-items:center;
+
 }
 
 
 
-.balance{
+.wallet-title span{
+
+background:#2ecc71;
+
+color:white;
+
+padding:5px 12px;
+
+border-radius:20px;
+
+font-size:12px;
+
+}
+
+
+
+.wallet-card h1{
 
 font-size:40px;
 
-font-weight:bold;
-
 color:#ff3d92;
-
-margin:20px 0;
 
 }
 
@@ -257,44 +286,53 @@ background:#ff5aa5;
 
 color:white;
 
-border:none;
-
 padding:12px;
 
 border-radius:25px;
 
+font-weight:bold;
+
 }
 
-.profile-box{
+
+/* PROFILE BOX */
+
+
+.box{
 
 background:white;
 
 margin:20px;
 
-padding:18px;
+padding:20px;
 
 border-radius:20px;
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
 
 box-shadow:0 6px 18px rgba(0,0,0,.08);
 
 }
 
 
-.profile-box button{
+
+.profile-control{
+
+display:flex;
+
+gap:10px;
+
+align-items:center;
+
+}
+
+
+
+.profile-control button{
 
 background:#ff5aa5;
 
 color:white;
 
-border:none;
-
-padding:10px 18px;
+padding:10px 20px;
 
 border-radius:20px;
 
@@ -302,7 +340,9 @@ border-radius:20px;
 
 
 
-/* Menu */
+
+
+/* MENU */
 
 
 .menu{
@@ -323,15 +363,15 @@ margin:20px;
 
 background:white;
 
-padding:18px;
+padding:18px 10px;
 
 border-radius:20px;
 
 text-align:center;
 
-font-weight:bold;
-
 box-shadow:0 6px 18px rgba(0,0,0,.08);
+
+transition:.2s;
 
 cursor:pointer;
 
@@ -341,7 +381,7 @@ cursor:pointer;
 
 .menu-item:hover{
 
-transform:translateY(-3px);
+transform:translateY(-4px);
 
 }
 
@@ -354,8 +394,6 @@ width:55px;
 height:55px;
 
 margin:auto;
-
-margin-bottom:10px;
 
 background:#ff5aa5;
 
@@ -375,10 +413,24 @@ font-size:28px;
 
 
 
-/* Chart */
+.menu-item p{
+
+margin-top:10px;
+
+font-weight:bold;
+
+}
 
 
-.chart-card{
+
+
+
+/* PAGE */
+
+
+.page{
+
+display:none;
 
 background:white;
 
@@ -394,33 +446,33 @@ box-shadow:0 6px 18px rgba(0,0,0,.08);
 
 
 
-/* Page */
+.page button{
 
+background:#ff5aa5;
 
-.page{
+color:white;
 
-display:none;
-
-background:white;
-
-margin:20px;
-
-padding:20px;
+padding:12px 20px;
 
 border-radius:20px;
+
+margin-top:15px;
 
 }
 
 
 
 
+/* QR */
+
+
 .qr-box{
 
-text-align:center;
-
-background:#fff;
+background:white;
 
 padding:20px;
+
+text-align:center;
 
 border-radius:20px;
 
@@ -437,6 +489,10 @@ height:200px;
 }
 
 
+
+
+
+/* SETTINGS */
 
 
 .setting-item{
@@ -461,7 +517,7 @@ cursor:pointer;
 
 
 
-/* Bottom Menu */
+/* BOTTOM MENU */
 
 
 .bottom{
@@ -484,12 +540,24 @@ padding:15px;
 
 border-top:1px solid #ddd;
 
-z-index:10;
+z-index:99;
 
 }
 
 
 
+.bottom div{
+
+text-align:center;
+
+cursor:pointer;
+
+font-weight:bold;
+
+}
+
+
+/* DARK MODE */
 
 
 .dark{
@@ -501,15 +569,171 @@ color:white;
 }
 
 
+
 .dark .wallet-card,
-.dark .profile-box,
+.dark .box,
 .dark .menu-item,
-.dark .chart-card,
 .dark .page,
-.dark .setting-item{
+.dark .setting-item,
+.dark .bottom{
 
 background:#333;
 
 color:white;
+
+}
+
+
+
+.dark .menu-item p{
+
+color:white;
+
+}
+
+
+
+
+/* MOBILE RESPONSIVE */
+
+
+@media(max-width:600px){
+
+
+.header{
+
+padding:20px 15px;
+
+}
+
+
+
+.profile h2{
+
+font-size:20px;
+
+}
+
+
+
+.wallet-card h1{
+
+font-size:32px;
+
+}
+
+
+
+.menu{
+
+grid-template-columns:repeat(3,1fr);
+
+gap:10px;
+
+}
+
+
+
+.menu-item{
+
+padding:15px 5px;
+
+font-size:13px;
+
+}
+
+
+
+.icon{
+
+width:45px;
+
+height:45px;
+
+font-size:22px;
+
+}
+
+
+
+.bottom{
+
+padding:12px 5px;
+
+}
+
+
+
+}
+
+
+
+
+/* LIST */
+
+
+#historyList{
+
+list-style:none;
+
+padding:0;
+
+}
+
+
+
+#historyList li{
+
+background:#f8f8f8;
+
+margin:10px 0;
+
+padding:15px;
+
+border-radius:15px;
+
+}
+
+
+
+.dark #historyList li{
+
+background:#444;
+
+}
+
+
+
+
+/* FILE INPUT */
+
+
+input[type="file"]{
+
+font-size:12px;
+
+}
+
+
+
+
+
+/* ANIMATION */
+
+
+.menu-item,
+.wallet-card,
+.box{
+
+transition:.3s;
+
+}
+
+
+.menu-item:hover,
+.wallet-card:hover,
+.box:hover{
+
+transform:translateY(-3px);
 
 }
