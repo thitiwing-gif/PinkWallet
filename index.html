@@ -6,16 +6,41 @@
 <title>Pink Wallet</title>
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+<div id="loginPage">
+
+<h1>💗 Pink Wallet</h1>
+
+<input id="loginName" placeholder="ชื่อผู้ใช้">
+
+<input id="loginPin"
+placeholder="PIN 4 หลัก"
+type="password"
+maxlength="4">
+
+<button onclick="login()">
+เข้าสู่ Wallet
+</button>
+
+</div>
+
+
+<div id="app">
 
 <div class="header">
 
 <div class="profile">
 
 <div class="avatar">
-    <img id="profileImage" src="https://via.placeholder.com/80">
-    <input type="file" id="imageUpload" accept="image/*">
+
+<img id="profileImage" src="https://via.placeholder.com/80">
+
+<input type="file" id="imageUpload" accept="image/*">
+
 </div>
+
 
 <div>
 
@@ -31,83 +56,130 @@
 
 </div>
 
+
 <div class="card">
 
 <div class="bank-header">
-    <h3>💳 Pink Wallet</h3>
-    <span class="badge">SIMULATION</span>
+
+<h3>💳 Pink Wallet</h3>
+
+<span class="badge">SIMULATION</span>
+
 </div>
+
 
 <p class="title">ยอดเงินคงเหลือ</p>
 
-<div class="balance" id="balance">฿10,000.00</div>
+<div class="balance" id="balance">
+฿10,000.00
+</div>
+
 
 <button class="eye-btn" onclick="toggleBalance()">
 👁 ซ่อน/แสดงยอดเงิน
 </button>
 
+
 <hr>
 
 <p>🏦 Pink Bank</p>
+
 <p>123-4-56789-0</p>
 
 <p>💚 081-234-5678</p>
 
 </div>
 
-<!-- เพิ่มตรงนี้ -->
+
 
 <div class="profile-card">
 
-    <div class="avatar">
-        <img id="profileImage" src="https://via.placeholder.com/80">
-    </div>
+<div class="avatar">
 
-    <div class="profile-info">
-        <h3 id="username">Pink User</h3>
-        <button onclick="changeName()">เปลี่ยนชื่อ</button>
-    </div>
+<img id="profileImageCard" src="https://via.placeholder.com/80">
 
 </div>
+
+
+<div class="profile-info">
+
+<h3 id="username">Pink User</h3>
+
+<button onclick="changeName()">
+เปลี่ยนชื่อ
+</button>
+
+</div>
+
+</div>
+
+
 
 <div class="menu">
 
 <div class="menu-item" onclick="deposit()">
+
 <div class="icon">➕</div>
+
 <p>ฝาก</p>
+
 </div>
+
 
 <div class="menu-item" onclick="withdraw()">
+
 <div class="icon">➖</div>
+
 <p>ถอน</p>
+
 </div>
+
 
 <div class="menu-item" onclick="transfer()">
+
 <div class="icon">↗️</div>
+
 <p>โอน</p>
+
 </div>
+
 
 <div class="menu-item" onclick="receive()">
+
 <div class="icon">📥</div>
+
 <p>รับ</p>
+
 </div>
 
+
 <div class="menu-item">
+
 <div class="icon">📱</div>
+
 <p>เติมเงิน</p>
+
 </div>
 
-<div class="menu-item">
+
+<div class="menu-item" onclick="showQR()">
+
 <div class="icon">📷</div>
+
 <p>QR</p>
-</div>
 
 </div>
 
+</div>
 <div class="history">
-    <h3>ธุรกรรมล่าสุด</h3>
-    <ul id="historyList"></ul>
+
+<h3>ธุรกรรมล่าสุด</h3>
+
+<ul id="historyList"></ul>
+
 </div>
+
+
 <div class="chart-card">
 
 <h3>📊 สรุปรายรับ - รายจ่าย</h3>
@@ -115,71 +187,129 @@
 <canvas id="moneyChart"></canvas>
 
 </div>
- <div id="historyPage" class="page">
+
+
+
+<div id="historyPage" class="page">
 
 <h2>📋 รายการธุรกรรม</h2>
 
 <ul id="fullHistory"></ul>
 
- </div>   
-<div id="qrPage" class="page">
+</div>
+
+
+
 <div id="settingsPage" class="page">
 
 <h2>⚙️ ตั้งค่า</h2>
 
+
 <div class="setting-item" onclick="toggleTheme()">
+
 🌙 เปลี่ยนธีม
+
 </div>
+
 
 <div class="setting-item" onclick="clearData()">
+
 🗑 ล้างข้อมูลทั้งหมด
+
 </div>
+
 
 <div class="setting-item">
+
 💗 Pink Wallet v0.6
-</div>
 
 </div>
+
+
+</div>
+
+
+
+<div id="qrPage" class="page">
+
 <h2>📷 รับเงินด้วย QR</h2>
+
 
 <div class="qr-box">
 
-<img id="qrImage" 
+
+<img id="qrImage"
 src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=PinkWallet">
 
+
 </div>
+
 
 <h3>Pink User</h3>
 
+
 <p>บัญชี: 123-4-56789-0</p>
 
+
 <button onclick="copyAccount()">
+
 📋 คัดลอกเลขบัญชี
+
 </button>
 
-</div>    
+
+</div>
+
+
+
+
 <div class="bottom">
 
+
 <div onclick="showHome()">
-🏠<br>Home
+
+🏠<br>
+Home
+
 </div>
+
 
 <div onclick="showHistory()">
-📋<br>รายการ
+
+📋<br>
+รายการ
+
 </div>
+
 
 <div onclick="showQR()">
-📷<br>QR
+
+📷<br>
+QR
+
 </div>
+
 
 <div onclick="showSettings()">
-⚙️<br>ตั้งค่า
-</div>
+
+⚙️<br>
+ตั้งค่า
 
 </div>
+
+
+</div>
+
+
+</div>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script src="script.js"></script>
 
+
 </body>
+
 </html>
