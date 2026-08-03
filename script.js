@@ -145,3 +145,38 @@ document.getElementById("profileImage").src = savedImage;
 }
 
 });
+const ctx = document.getElementById('moneyChart');
+
+if(ctx){
+
+new Chart(ctx, {
+
+type:'doughnut',
+
+data:{
+
+labels:[
+"รายรับ",
+"รายจ่าย"
+],
+
+datasets:[{
+
+data:[
+7000,
+3000
+]
+
+}]
+
+},
+
+options:{
+
+responsive:true
+
+}
+
+});
+
+}
