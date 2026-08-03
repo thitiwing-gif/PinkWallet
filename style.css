@@ -281,3 +281,20 @@ cursor:pointer;
 font-weight:bold;
 
 }
+.dark{
+
+background:#222;
+color:white;
+
+}
+
+.dark .card,
+.dark .menu-item,
+.dark .profile-card,
+.dark .chart-card,
+.dark .setting-item{
+
+background:#333;
+color:white;
+
+}
