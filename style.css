@@ -245,3 +245,28 @@ padding:15px;
 border-bottom:1px solid #eee;
 
 }
+.qr-box{
+
+background:white;
+padding:20px;
+border-radius:20px;
+text-align:center;
+
+}
+
+.qr-box img{
+
+width:200px;
+height:200px;
+
+}
+
+.qr-box button{
+
+background:#ff5aa5;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:20px;
+
+}
