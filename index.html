@@ -7,7 +7,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pink Wallet v3.0</title>
+<title>
+Pink Wallet v6.0
+</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -17,7 +19,12 @@
 <body>
 
 
+<!-- LOGIN SYSTEM -->
+
 <div id="loginPage">
+
+
+<div class="login-box">
 
 
 <h1>
@@ -25,9 +32,16 @@
 </h1>
 
 
-<input 
+<p>
+Ultimate Wallet Platform
+</p>
+
+
+
+<input
 id="loginName"
 placeholder="ชื่อผู้ใช้">
+
 
 
 <input
@@ -37,9 +51,15 @@ maxlength="4"
 placeholder="PIN 4 หลัก">
 
 
+
 <button onclick="login()">
+
 เข้าสู่ระบบ
+
 </button>
+
+
+</div>
 
 
 </div>
@@ -48,28 +68,40 @@ placeholder="PIN 4 หลัก">
 
 
 
+
+
+<!-- MAIN APP -->
+
+
 <div id="app">
 
 
 
-<header>
+<header class="top-header">
 
 
-<div class="profile">
+<div class="user-profile">
 
 
-<img id="profileImage"
-src="https://via.placeholder.com/80">
+<img
+id="profileImage"
+src="https://via.placeholder.com/100">
+
 
 
 <div>
+
 
 <h2>
 Pink Wallet
 </h2>
 
+
 <p>
-สวัสดี <span id="username">User</span>
+สวัสดี
+<span id="username">
+User
+</span>
 </p>
 
 
@@ -80,9 +112,30 @@ Pink Wallet
 
 
 
+
+
+<div class="top-icons">
+
+
+<div onclick="showNotification()">
+
+🔔
+
+<span id="notifyCount">
+0
+</span>
+
+
+</div>
+
+
+
 <div onclick="showSettings()">
 
 ⚙️
+
+</div>
+
 
 </div>
 
@@ -93,7 +146,15 @@ Pink Wallet
 
 
 
-<div class="wallet">
+
+
+<!-- WALLET CARD -->
+
+
+<section class="wallet-card">
+
+
+<div class="wallet-title">
 
 
 <h3>
@@ -101,14 +162,31 @@ Pink Wallet
 </h3>
 
 
+<span id="modeBadge">
+
+SIMULATION
+
+</span>
+
+
+</div>
+
+
+
+
 <p>
-ยอดเงิน
+ยอดเงินทั้งหมด
 </p>
 
 
+
 <h1 id="balance">
-฿10,000
+
+฿10,000.00
+
 </h1>
+
+
 
 
 <button onclick="toggleBalance()">
@@ -118,31 +196,40 @@ Pink Wallet
 </button>
 
 
-</div>
+
+</section>
 
 
 
 
-<div class="mode-box">
+
+
+
+<!-- SYSTEM MODE -->
+
+
+<section class="system-mode">
 
 
 <h3>
-โหมดการใช้งาน
+รูปแบบการใช้งาน
 </h3>
 
 
 <button onclick="setMode('simulation')">
 
-🟢 จำลอง
+🟢 Simulation
 
 </button>
+
 
 
 <button onclick="setMode('real')">
 
-🔵 จริง
+🔵 Real Mode
 
 </button>
+
 
 
 <p id="modeStatus">
@@ -152,32 +239,46 @@ Pink Wallet
 </p>
 
 
-</div>
+</section>
 
 
 
 
-<!-- WALLET ACTIONS -->
+
+<!-- QUICK ACTION MENU -->
 
 
-<div class="actions">
+<section class="quick-actions">
 
 
 <div onclick="deposit()">
 
+<div class="action-icon">
+
 ➕
-<br>
-ฝากเงิน
 
 </div>
+
+<p>
+ฝากเงิน
+</p>
+
+</div>
+
 
 
 
 <div onclick="withdraw()">
 
+<div class="action-icon">
+
 ➖
-<br>
+
+</div>
+
+<p>
 ถอนเงิน
+</p>
 
 </div>
 
@@ -186,9 +287,15 @@ Pink Wallet
 
 <div onclick="transfer()">
 
+<div class="action-icon">
+
 ↗️
-<br>
+
+</div>
+
+<p>
 โอนเงิน
+</p>
 
 </div>
 
@@ -197,19 +304,15 @@ Pink Wallet
 
 <div onclick="receive()">
 
+<div class="action-icon">
+
 📥
-<br>
-รับเงิน
 
 </div>
 
-
-
-<div onclick="showHistory()">
-
-📋
-<br>
-รายการ
+<p>
+รับเงิน
+</p>
 
 </div>
 
@@ -218,17 +321,463 @@ Pink Wallet
 
 <div onclick="showQR()">
 
+<div class="action-icon">
+
 📷
-<br>
-QR
+
+</div>
+
+<p>
+QR รับเงิน
+</p>
 
 </div>
 
 
 
+
+<div onclick="showHistory()">
+
+<div class="action-icon">
+
+📋
+
+</div>
+
+<p>
+รายการ
+</p>
+
 </div>
 
 
+
+</section>
+
+
+
+
+
+
+
+
+<!-- FINANCE SUMMARY -->
+
+
+<section class="summary-card">
+
+
+<h3>
+
+📊 สรุปการเงิน
+
+</h3>
+
+
+
+<div class="summary-item">
+
+
+<span>
+รายรับ
+</span>
+
+
+<strong id="income">
+
+฿0
+
+</strong>
+
+
+</div>
+
+
+
+
+<div class="summary-item">
+
+
+<span>
+รายจ่าย
+</span>
+
+
+<strong id="expense">
+
+฿0
+
+</strong>
+
+
+</div>
+
+
+
+
+<div class="summary-item">
+
+
+<span>
+จำนวนธุรกรรม
+</span>
+
+
+<strong id="transactionCount">
+
+0
+
+</strong>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- CHART AREA -->
+
+
+<section class="chart-card">
+
+
+<h3>
+
+📈 กราฟรายรับ-รายจ่าย
+
+</h3>
+
+
+
+<canvas id="moneyChart">
+
+</canvas>
+
+
+
+</section>
+
+
+
+
+
+<!-- TRANSACTION SEARCH -->
+
+
+<section class="search-card">
+
+
+<h3>
+
+🔎 ค้นหารายการ
+
+</h3>
+
+
+
+<input
+id="searchTransaction"
+placeholder="ค้นหาธุรกรรม..."
+onkeyup="searchHistory()">
+
+
+
+</section>
+
+
+
+
+
+
+
+<!-- RECENT TRANSACTION -->
+
+
+<section class="transaction-card">
+
+
+<h3>
+
+📋 รายการล่าสุด
+
+</h3>
+
+
+
+<ul id="historyList">
+
+
+</ul>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- RECEIVER LIST -->
+
+
+<section class="receiver-card">
+
+
+<h3>
+
+👥 ผู้รับเงิน
+
+</h3>
+
+
+
+<div id="receiverList">
+
+
+</div>
+
+
+
+<button onclick="addReceiver()">
+
+➕ เพิ่มผู้รับเงิน
+
+</button>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- RECEIPT -->
+
+
+<section class="receipt-card">
+
+
+<h3>
+
+🧾 ใบเสร็จล่าสุด
+
+</h3>
+
+
+
+<div id="receiptBox">
+
+
+ยังไม่มีรายการ
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+<!-- BANK ACCOUNT SYSTEM -->
+
+
+<section class="bank-card">
+
+
+<h3>
+
+🏦 บัญชีของฉัน
+
+</h3>
+
+
+
+
+<div class="bank-info">
+
+
+<img 
+id="bankLogo"
+src="https://via.placeholder.com/60">
+
+
+
+<div>
+
+
+<p id="bankName">
+
+ยังไม่ได้เลือกธนาคาร
+
+</p>
+
+
+
+<p id="accountNumber">
+
+ไม่มีเลขบัญชี
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<button onclick="showSettings()">
+
+⚙️ จัดการบัญชี
+
+</button>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- WALLET CONNECTION -->
+
+
+<section class="connection-card">
+
+
+<h3>
+
+🔗 การเชื่อมต่อ
+
+</h3>
+
+
+
+
+<div class="connect-item">
+
+
+📱 TrueMoney
+
+
+<span id="trueMoneyStatus">
+
+ยังไม่เชื่อมต่อ
+
+</span>
+
+
+</div>
+
+
+
+
+
+<div class="connect-item">
+
+
+🏦 Bank API
+
+
+<span>
+
+เตรียมเชื่อมต่อ
+
+</span>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- SECURITY -->
+
+
+<section class="security-card">
+
+
+<h3>
+
+🔐 ความปลอดภัย
+
+</h3>
+
+
+
+<div class="security-item"
+onclick="changePIN()">
+
+
+เปลี่ยน PIN
+
+
+</div>
+
+
+
+
+<div class="security-item"
+onclick="logout()">
+
+
+ออกจากระบบ
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+<!-- SETTINGS PAGE -->
+
+
+<div id="settingsPage" class="page">
+
+
+
+<h2>
+
+⚙️ ตั้งค่า
+
+</h2>
 
 
 
@@ -237,106 +786,653 @@ QR
 <!-- PROFILE SETTINGS -->
 
 
-<div id="settingsPage" class="page">
-
-
-<h2>
-⚙️ ตั้งค่า
-</h2>
-
-
+<div class="setting-group">
 
 
 <h3>
+
 👤 โปรไฟล์
+
 </h3>
 
 
-<button onclick="changeName()">
 
-เปลี่ยนชื่อ
+<input
+id="newUsername"
+placeholder="ชื่อผู้ใช้ใหม่">
+
+
+
+<button onclick="saveProfile()">
+
+บันทึกชื่อ
 
 </button>
 
 
 
-<input 
+<input
 type="file"
 id="imageUpload"
 accept="image/*">
 
 
 
+</div>
 
 
+
+
+
+
+
+<!-- BANK SETTINGS -->
+
+
+<div class="setting-group">
 
 
 <h3>
-🏦 บัญชี
+
+🏦 ธนาคาร
+
 </h3>
 
 
 
+<select id="bankSelect">
+
+
+<option>
+
+เลือกธนาคาร
+
+</option>
+
+
+<option>
+
+ธนาคารกรุงเทพ
+
+</option>
+
+
+<option>
+
+ธนาคารกสิกรไทย
+
+</option>
+
+
+<option>
+
+ธนาคารไทยพาณิชย์
+
+</option>
+
+
+<option>
+
+ธนาคารกรุงไทย
+
+</option>
+
+
+
+</select>
+
+
+
+
+
 <input
-id="bankName"
-placeholder="ชื่อธนาคาร">
-
-
-
-<input
-id="accountNumber"
+id="settingAccount"
 placeholder="เลขบัญชี">
 
 
 
-<button onclick="saveBank()">
+<button onclick="saveBankAccount()">
 
 บันทึกบัญชี
 
 </button>
 
 
+</div>
 
 
 
+
+
+
+
+
+<!-- TRUE MONEY -->
+
+
+<div class="setting-group">
 
 
 <h3>
-📱 TrueMoney
+
+📱 TrueMoney Wallet
+
 </h3>
 
 
 
 <input
-id="trueMoney"
+id="trueMoneyNumber"
 placeholder="เบอร์ TrueMoney">
 
 
 
-<button onclick="saveTrueMoney()">
+<button onclick="connectTrueMoney()">
 
-เชื่อมต่อ (จำลอง)
+เชื่อมต่อ
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- APP SETTINGS -->
+
+
+<div class="setting-group">
+
+
+<h3>
+
+📱 แอป
+
+</h3>
+
+
+
+<button onclick="toggleTheme()">
+
+🌙 เปลี่ยนธีม
 
 </button>
 
 
 
 
-<p id="connectStatus">
+<button onclick="clearData()">
 
-ยังไม่ได้เชื่อมต่อ
+🗑 ล้างข้อมูล
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+<button onclick="showHome()">
+
+🏠 กลับหน้าหลัก
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+<!-- HISTORY FULL PAGE -->
+
+
+<div id="historyPage" class="page">
+
+
+
+<h2>
+
+📋 ประวัติทั้งหมด
+
+</h2>
+
+
+
+<div class="history-filter">
+
+
+<button onclick="filterHistory('all')">
+
+ทั้งหมด
+
+</button>
+
+
+
+<button onclick="filterHistory('income')">
+
+รายรับ
+
+</button>
+
+
+
+<button onclick="filterHistory('expense')">
+
+รายจ่าย
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+<ul id="fullHistory">
+
+
+</ul>
+
+
+
+
+
+<button onclick="showHome()">
+
+🏠 กลับ
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- QR PAGE -->
+
+
+<div id="qrPage" class="page">
+
+
+
+<h2>
+
+📷 QR รับเงิน
+
+</h2>
+
+
+
+
+<div class="qr-box">
+
+
+<img
+id="qrImage"
+src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=PinkWallet">
+
+
+
+<h3>
+
+Pink Wallet
+
+</h3>
+
+
+
+<p>
+
+เลขบัญชี:
+<span id="qrAccount">
+
+123-4-56789-0
+
+</span>
+
+</p>
+
+
+
+<button onclick="copyAccount()">
+
+📋 คัดลอก
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+<button onclick="showHome()">
+
+🏠 กลับ
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+<!-- RECEIVER MANAGEMENT PAGE -->
+
+
+<div id="receiverPage" class="page">
+
+
+
+<h2>
+
+👥 รายชื่อผู้รับเงิน
+
+</h2>
+
+
+
+<div id="receiverManageList">
+
+
+</div>
+
+
+
+
+<button onclick="addReceiver()">
+
+➕ เพิ่มผู้รับ
+
+</button>
+
+
+
+
+<button onclick="showHome()">
+
+🏠 กลับ
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- RECEIPT PAGE -->
+
+
+<div id="receiptPage" class="page">
+
+
+
+<h2>
+
+🧾 ใบเสร็จธุรกรรม
+
+</h2>
+
+
+
+<div class="receipt-detail">
+
+
+<p>
+
+ประเภท:
+<span id="receiptType">
+
+-
+
+</span>
+
+</p>
+
+
+
+<p>
+
+จำนวนเงิน:
+<span id="receiptAmount">
+
+-
+
+</span>
+
+</p>
+
+
+
+<p>
+
+เวลา:
+<span id="receiptTime">
+
+-
+
+</span>
+
+</p>
+
+
+
+<p>
+
+สถานะ:
+<span id="receiptStatus">
+
+สำเร็จ
+
+</span>
+
+</p>
+
+
+
+</div>
+
+
+
+
+<button onclick="showHome()">
+
+🏠 กลับ
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- KYC PAGE -->
+
+
+<div id="kycPage" class="page">
+
+
+
+<h2>
+
+🪪 ยืนยันตัวตน
+
+</h2>
+
+
+
+<p>
+
+ระบบ KYC (โครงสร้างจำลอง)
+
+</p>
+
+
+
+<input
+id="idCard"
+placeholder="เลขบัตรประชาชน">
+
+
+
+<button onclick="submitKYC()">
+
+ส่งข้อมูล
+
+</button>
+
+
+
+<p id="kycStatus">
+
+ยังไม่ยืนยัน
 
 </p>
 
 
 
 
+<button onclick="showHome()">
+
+🏠 กลับ
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+<!-- ANALYTICS PAGE -->
+
+
+<div id="analyticsPage" class="page">
+
+
+
+<h2>
+
+📊 รายงานการเงิน
+
+</h2>
+
+
+
+
+<div class="analytics-box">
+
+
+<h3>
+
+รายรับรวม
+
+</h3>
+
+
+<p id="totalIncome">
+
+฿0
+
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="analytics-box">
+
+
+<h3>
+
+รายจ่ายรวม
+
+</h3>
+
+
+<p id="totalExpense">
+
+฿0
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="analytics-box">
+
+
+<h3>
+
+ยอดคงเหลือ
+
+</h3>
+
+
+<p id="totalBalance">
+
+฿0
+
+</p>
+
+
+</div>
+
+
 
 
 
 <button onclick="showHome()">
 
-🏠 หน้าหลัก
+🏠 กลับ
 
 </button>
 
@@ -349,27 +1445,48 @@ placeholder="เบอร์ TrueMoney">
 
 
 
-<!-- HISTORY -->
 
 
-<div id="historyPage" class="page">
+
+<!-- NOTIFICATION PAGE -->
+
+
+<div id="notificationPage" class="page">
+
 
 
 <h2>
-📋 รายการธุรกรรม
+
+🔔 การแจ้งเตือน
+
 </h2>
 
 
-<ul id="historyList">
+
+
+<ul id="notificationList">
+
 
 </ul>
 
 
-<button onclick="showHome()">
 
-กลับ
+
+
+<button onclick="clearNotifications()">
+
+ล้างการแจ้งเตือน
 
 </button>
+
+
+
+<button onclick="showHome()">
+
+🏠 กลับ
+
+</button>
+
 
 
 </div>
@@ -380,38 +1497,81 @@ placeholder="เบอร์ TrueMoney">
 
 
 
-<!-- QR -->
+
+<!-- API STATUS -->
 
 
-<div id="qrPage" class="page">
+<div id="apiPage" class="page">
+
 
 
 <h2>
-📷 QR รับเงิน
+
+🔌 ระบบเชื่อมต่อ
+
 </h2>
 
 
 
-<img id="qrImage"
-src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=PinkWallet">
+<div class="api-item">
 
 
-<h3>
-Pink Wallet
-</h3>
+🏦 Bank API
 
 
-<button onclick="copyAccount()">
+<span>
 
-📋 คัดลอกบัญชี
+พร้อมเชื่อมต่อ
 
-</button>
+</span>
+
+
+</div>
+
+
+
+
+
+<div class="api-item">
+
+
+📱 Wallet API
+
+
+<span>
+
+พร้อมเชื่อมต่อ
+
+</span>
+
+
+</div>
+
+
+
+
+
+<div class="api-item">
+
+
+🔐 Security API
+
+
+<span>
+
+Active
+
+</span>
+
+
+</div>
+
 
 
 
 <button onclick="showHome()">
 
-กลับ
+🏠 กลับ
 
 </button>
 
@@ -422,49 +1582,66 @@ Pink Wallet
 
 
 
-<!-- BOTTOM MENU -->
+
+<!-- BOTTOM NAVIGATION -->
 
 
-<nav class="bottom">
+<nav class="bottom-nav">
+
 
 
 <div onclick="showHome()">
 
 🏠
+
 <br>
-Home
+
+หน้าหลัก
 
 </div>
+
+
 
 
 
 <div onclick="showHistory()">
 
 📋
+
 <br>
+
 รายการ
 
 </div>
 
 
 
-<div onclick="showQR()">
 
-📷
+
+<div onclick="showAnalytics()">
+
+📊
+
 <br>
-QR
+
+สรุป
 
 </div>
+
+
 
 
 
 <div onclick="showSettings()">
 
 ⚙️
+
 <br>
+
 ตั้งค่า
 
 </div>
+
 
 
 </nav>
@@ -473,14 +1650,92 @@ QR
 
 
 
+
+
+
+
+<!-- MODAL BOX -->
+
+
+<div id="modalBox"
+class="modal">
+
+
+
+<div class="modal-content">
+
+
+<span 
+onclick="closeModal()"
+class="close">
+
+✖
+
+</span>
+
+
+
+<h3 id="modalTitle">
+
+แจ้งเตือน
+
+</h3>
+
+
+
+<p id="modalText">
+
+</p>
+
+
+
+<button onclick="closeModal()">
+
+ตกลง
+
+</button>
+
+
+
+</div>
+
+
 </div>
 
 
 
 
+
+
+
+
+<!-- LOADING -->
+
+
+<div id="loading">
+
+
+<div>
+
+กำลังโหลด Pink Wallet...
+
+</div>
+
+
+</div>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
 <script src="script.js"></script>
 
 
+
 </body>
+
 
 </html>
