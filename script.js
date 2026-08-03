@@ -80,3 +80,28 @@ function receive(){
 }
 
 document.addEventListener("DOMContentLoaded", updateUI);
+function changeName(){
+
+let name = prompt("ใส่ชื่อใหม่");
+
+if(name){
+document.getElementById("username").innerHTML = name;
+
+localStorage.setItem("username", name);
+
+}
+
+}
+
+
+window.onload=function(){
+
+let savedName = localStorage.getItem("username");
+
+if(savedName){
+
+document.getElementById("username").innerHTML = savedName;
+
+}
+
+}
