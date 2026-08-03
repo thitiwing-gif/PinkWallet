@@ -1,4 +1,7 @@
 
+// Pink Wallet v2.0
+
+
 let balance =
 Number(localStorage.getItem("balance")) || 10000;
 
@@ -22,12 +25,17 @@ let hideBalance=false;
 
 
 
+
+
+
 function saveData(){
+
 
 localStorage.setItem(
 "balance",
 balance
 );
+
 
 
 localStorage.setItem(
@@ -36,10 +44,12 @@ JSON.stringify(history)
 );
 
 
+
 localStorage.setItem(
 "username",
 username
 );
+
 
 
 localStorage.setItem(
@@ -47,7 +57,11 @@ localStorage.setItem(
 notifications
 );
 
+
 }
+
+
+
 
 
 
@@ -55,10 +69,16 @@ notifications
 
 function getTime(){
 
+
 return new Date()
 .toLocaleString("th-TH");
 
+
 }
+
+
+
+
 
 
 
@@ -67,11 +87,14 @@ return new Date()
 function updateUI(){
 
 
+
 let money =
 document.getElementById("balance");
 
 
+
 if(money){
+
 
 money.innerHTML =
 
@@ -83,7 +106,10 @@ hideBalance
 
 :
 
-"฿"+balance.toLocaleString("th-TH")+".00";
+"฿"+
+balance.toLocaleString("th-TH")
++".00";
+
 
 }
 
@@ -91,8 +117,10 @@ hideBalance
 
 
 
+
 let name =
 document.getElementById("username");
+
 
 
 if(name){
@@ -105,8 +133,10 @@ name.innerHTML=username;
 
 
 
+
 let count =
 document.getElementById("notifyCount");
+
 
 
 if(count){
@@ -119,34 +149,15 @@ count.innerHTML=notifications;
 
 
 
-let list =
-document.getElementById("historyList");
-
-
-if(list){
-
-list.innerHTML="";
-
-
-history.slice().reverse()
-.forEach(item=>{
-
-
-list.innerHTML +=
-
-"<li>"+item+"</li>";
-
-
-});
-
-
-}
 
 
 saveData();
 
 
 }
+
+
+
 
 
 
@@ -161,24 +172,33 @@ let name =
 document.getElementById("loginName").value;
 
 
+
 let pin =
 document.getElementById("loginPin").value;
 
 
 
+
+
 if(name=="" || pin.length!=4){
+
 
 alert(
 "กรุณาใส่ชื่อและ PIN 4 หลัก"
 );
 
+
 return;
+
 
 }
 
 
 
+
+
 username=name;
+
 
 
 localStorage.setItem(
@@ -188,9 +208,19 @@ localStorage.setItem(
 
 
 
+localStorage.setItem(
+"pin",
+pin
+);
+
+
+
+
+
 document.getElementById(
 "loginPage"
 ).style.display="none";
+
 
 
 document.getElementById(
@@ -198,10 +228,13 @@ document.getElementById(
 ).style.display="block";
 
 
+
 updateUI();
 
 
 }
+
+
 
 
 
@@ -211,9 +244,12 @@ updateUI();
 
 function toggleBalance(){
 
+
 hideBalance=!hideBalance;
 
+
 updateUI();
+
 
 }
 
@@ -221,12 +257,20 @@ updateUI();
 
 
 
-function addHistory(text){
+
+
+
+function addTransaction(text){
 
 
 history.push(
-text+" | "+getTime()
+
+text+
+" | "+
+getTime()
+
 );
+
 
 
 notifications++;
@@ -242,15 +286,21 @@ updateUI();
 
 
 
+
 function deposit(){
+
 
 balance+=100;
 
-addHistory(
+
+addTransaction(
 "➕ ฝาก +100 บาท"
 );
 
+
 }
+
+
 
 
 
@@ -261,7 +311,11 @@ function withdraw(){
 
 if(balance<100){
 
-alert("ยอดเงินไม่พอ");
+
+alert(
+"ยอดเงินไม่พอ"
+);
+
 
 return;
 
@@ -271,7 +325,7 @@ return;
 balance-=100;
 
 
-addHistory(
+addTransaction(
 "➖ ถอน -100 บาท"
 );
 
@@ -281,24 +335,34 @@ addHistory(
 
 function transfer(){
 
+
 if(balance<50){
 
-alert("ยอดเงินไม่พอ");
+
+alert(
+"ยอดเงินไม่พอ"
+);
+
 
 return;
 
+
 }
+
 
 
 balance-=50;
 
 
-addHistory(
+
+addTransaction(
 "↗️ โอน -50 บาท"
 );
 
 
 }
+
+
 
 
 
@@ -310,12 +374,15 @@ function receive(){
 balance+=50;
 
 
-addHistory(
+addTransaction(
 "📥 รับ +50 บาท"
 );
 
 
 }
+
+
+
 
 
 
@@ -334,14 +401,18 @@ username
 
 if(name){
 
+
 username=name;
+
 
 updateUI();
 
+
 }
 
 
 }
+
 
 
 
@@ -353,11 +424,15 @@ function showNotification(){
 
 
 alert(
-"มีแจ้งเตือน "+notifications+" รายการ"
+"คุณมี "+
+notifications+
+" รายการแจ้งเตือน"
 );
 
 
+
 notifications=0;
+
 
 
 updateUI();
@@ -371,7 +446,9 @@ updateUI();
 
 
 
-// รูปโปรไฟล์
+
+
+// PROFILE IMAGE
 
 
 document.addEventListener(
@@ -387,29 +464,40 @@ document.getElementById(
 
 
 
+
 if(upload){
 
 
-upload.onchange=function(){
+
+upload.addEventListener(
+"change",
+function(){
+
 
 
 let file=this.files[0];
 
 
+
 if(file){
 
 
-let reader=new FileReader();
+
+let reader=
+new FileReader();
+
 
 
 
 reader.onload=function(e){
 
 
+
 localStorage.setItem(
 "profileImage",
 e.target.result
 );
+
 
 
 
@@ -435,40 +523,43 @@ img.src=e.target.result;
 reader.readAsDataURL(file);
 
 
-}
-
-
-}
-
 
 }
 
 
 
-let saved =
+});
+
+
+
+}
+
+
+
+
+
+let savedImage=
 localStorage.getItem(
 "profileImage"
 );
 
 
 
-if(saved){
-
-
-let img =
+let img=
 document.getElementById(
 "profileImage"
 );
 
 
-if(img){
 
-img.src=saved;
+if(savedImage && img){
+
+
+img.src=savedImage;
+
 
 }
 
-
-}
 
 
 
@@ -485,19 +576,31 @@ updateUI();
 
 
 
+// PAGE SYSTEM
+
+
+
 function hidePages(){
 
 
-[
+
+let pages=[
+
 "historyPage",
 "qrPage",
 "settingsPage"
 
-].forEach(id=>{
+];
+
+
+
+pages.forEach(function(id){
+
 
 
 let page=
 document.getElementById(id);
+
 
 
 if(page){
@@ -505,6 +608,7 @@ if(page){
 page.style.display="none";
 
 }
+
 
 
 });
@@ -518,10 +622,12 @@ page.style.display="none";
 
 
 
+
 function showHome(){
 
 
 hidePages();
+
 
 
 document.querySelector(
@@ -529,14 +635,16 @@ document.querySelector(
 ).style.display="block";
 
 
+
+document.querySelector(
+".box"
+).style.display="block";
+
+
+
 document.querySelector(
 ".menu"
 ).style.display="grid";
-
-
-document.querySelector(
-".chart-card"
-).style.display="block";
 
 
 }
@@ -554,32 +662,47 @@ function showHistory(){
 hidePages();
 
 
+
 let page=
 document.getElementById(
 "historyPage"
 );
 
 
+
+if(page){
+
+
 page.style.display="block";
+
 
 
 let list=
 document.getElementById(
-"fullHistory"
+"historyList"
 );
+
 
 
 list.innerHTML="";
 
 
+
 history.slice().reverse()
-.forEach(item=>{
+.forEach(function(item){
 
 
-list.innerHTML+=
+
+list.innerHTML +=
 "<li>"+item+"</li>";
 
+
+
 });
+
+
+
+}
 
 
 }
@@ -597,18 +720,22 @@ function showQR(){
 hidePages();
 
 
+
+let page=
 document.getElementById(
 "qrPage"
-).style.display="block";
+);
 
+
+
+if(page){
+
+page.style.display="block";
 
 }
 
 
-
-
-
-
+}
 
 
 function showSettings(){
@@ -617,9 +744,19 @@ function showSettings(){
 hidePages();
 
 
+
+let page =
 document.getElementById(
 "settingsPage"
-).style.display="block";
+);
+
+
+
+if(page){
+
+page.style.display="block";
+
+}
 
 
 }
@@ -639,9 +776,11 @@ navigator.clipboard.writeText(
 );
 
 
+
 alert(
 "คัดลอกเลขบัญชีแล้ว"
 );
+
 
 
 }
@@ -655,11 +794,14 @@ alert(
 
 function toggleTheme(){
 
+
 document.body.classList.toggle(
 "dark"
 );
 
+
 }
+
 
 
 
@@ -670,7 +812,7 @@ document.body.classList.toggle(
 function changePin(){
 
 
-let pin=
+let pin =
 prompt(
 "ใส่ PIN ใหม่ 4 หลัก"
 );
@@ -686,8 +828,19 @@ pin
 );
 
 
+
 alert(
 "เปลี่ยน PIN แล้ว"
+);
+
+
+}
+
+else{
+
+
+alert(
+"PIN ต้องมี 4 หลัก"
 );
 
 
@@ -702,15 +855,28 @@ alert(
 
 
 
+
 function clearData(){
 
 
-if(confirm(
+let ok =
+confirm(
 "ต้องการล้างข้อมูลทั้งหมดหรือไม่?"
-)){
+);
+
+
+
+if(ok){
 
 
 localStorage.clear();
+
+
+
+alert(
+"ล้างข้อมูลแล้ว"
+);
+
 
 
 location.reload();
@@ -727,27 +893,55 @@ location.reload();
 
 
 
+
+// LOAD APP
+
+
+
 window.onload=function(){
 
 
-let login=
+
+let login =
 localStorage.getItem(
 "login"
 );
 
 
 
+
 if(login==="true"){
 
 
+
+let loginPage =
 document.getElementById(
 "loginPage"
-).style.display="none";
+);
 
 
+
+let app =
 document.getElementById(
 "app"
-).style.display="block";
+);
+
+
+
+if(loginPage){
+
+loginPage.style.display="none";
+
+}
+
+
+
+if(app){
+
+app.style.display="block";
+
+}
+
 
 
 }
@@ -757,4 +951,4 @@ document.getElementById(
 updateUI();
 
 
-}
+};
