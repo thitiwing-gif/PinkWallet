@@ -180,3 +180,51 @@ responsive:true
 });
 
 }
+function saveTransaction(text){
+
+let data = JSON.parse(localStorage.getItem("history")) || [];
+
+data.push(text);
+
+localStorage.setItem(
+"history",
+JSON.stringify(data)
+);
+
+}
+
+
+function showHistory(){
+
+document.querySelector(".card").style.display="none";
+document.querySelector(".menu").style.display="none";
+document.querySelector(".chart-card").style.display="none";
+
+document.getElementById("historyPage").style.display="block";
+
+
+let data = JSON.parse(localStorage.getItem("history")) || [];
+
+let list = document.getElementById("fullHistory");
+
+list.innerHTML="";
+
+
+data.forEach(item=>{
+
+let li=document.createElement("li");
+
+li.innerHTML=item;
+
+list.appendChild(li);
+
+});
+
+}
+
+
+function showHome(){
+
+location.reload();
+
+}
