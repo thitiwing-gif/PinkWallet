@@ -1,5 +1,5 @@
 
-// Pink Wallet v2.0
+// Pink Wallet v3.0
 
 
 let balance =
@@ -16,11 +16,11 @@ let username =
 localStorage.getItem("username") || "Pink User";
 
 
-let notifications =
-Number(localStorage.getItem("notifications")) || 0;
+let mode =
+localStorage.getItem("mode") || "simulation";
 
 
-let hideBalance=false;
+let hideBalance = false;
 
 
 
@@ -37,12 +37,10 @@ balance
 );
 
 
-
 localStorage.setItem(
 "history",
 JSON.stringify(history)
 );
-
 
 
 localStorage.setItem(
@@ -51,10 +49,9 @@ username
 );
 
 
-
 localStorage.setItem(
-"notifications",
-notifications
+"mode",
+mode
 );
 
 
@@ -83,9 +80,7 @@ return new Date()
 
 
 
-
 function updateUI(){
-
 
 
 let money =
@@ -117,7 +112,6 @@ balance.toLocaleString("th-TH")
 
 
 
-
 let name =
 document.getElementById("username");
 
@@ -134,19 +128,34 @@ name.innerHTML=username;
 
 
 
-let count =
-document.getElementById("notifyCount");
+let status =
+document.getElementById("modeStatus");
 
 
 
-if(count){
+if(status){
 
-count.innerHTML=notifications;
+
+if(mode==="real"){
+
+
+status.innerHTML=
+"🔵 โหมดเงินจริง (เตรียมเชื่อมต่อ)";
+
+
+}
+
+else{
+
+
+status.innerHTML=
+"🟢 โหมดจำลอง";
+
 
 }
 
 
-
+}
 
 
 
@@ -155,7 +164,6 @@ saveData();
 
 
 }
-
 
 
 
@@ -179,8 +187,7 @@ document.getElementById("loginPin").value;
 
 
 
-
-if(name=="" || pin.length!=4){
+if(name==="" || pin.length!==4){
 
 
 alert(
@@ -216,7 +223,6 @@ pin
 
 
 
-
 document.getElementById(
 "loginPage"
 ).style.display="none";
@@ -233,7 +239,6 @@ updateUI();
 
 
 }
-
 
 
 
@@ -260,7 +265,37 @@ updateUI();
 
 
 
-function addTransaction(text){
+
+function setMode(type){
+
+
+mode=type;
+
+
+if(type==="real"){
+
+
+alert(
+"โหมดเงินจริงต้องเชื่อมต่อผู้ให้บริการที่ได้รับอนุญาต"
+);
+
+
+}
+
+
+updateUI();
+
+
+}
+
+
+
+
+
+
+
+
+function addHistory(text){
 
 
 history.push(
@@ -270,10 +305,6 @@ text+
 getTime()
 
 );
-
-
-
-notifications++;
 
 
 updateUI();
@@ -293,8 +324,8 @@ function deposit(){
 balance+=100;
 
 
-addTransaction(
-"➕ ฝาก +100 บาท"
+addHistory(
+"➕ ฝากเงิน +100 บาท"
 );
 
 
@@ -319,14 +350,16 @@ alert(
 
 return;
 
+
 }
+
 
 
 balance-=100;
 
 
-addTransaction(
-"➖ ถอน -100 บาท"
+addHistory(
+"➖ ถอนเงิน -100 บาท"
 );
 
 
@@ -354,13 +387,13 @@ return;
 balance-=50;
 
 
-
-addTransaction(
-"↗️ โอน -50 บาท"
+addHistory(
+"↗️ โอนเงิน -50 บาท"
 );
 
 
 }
+
 
 
 
@@ -374,8 +407,8 @@ function receive(){
 balance+=50;
 
 
-addTransaction(
-"📥 รับ +50 บาท"
+addHistory(
+"📥 รับเงิน +50 บาท"
 );
 
 
@@ -420,26 +453,85 @@ updateUI();
 
 
 
-function showNotification(){
+// BANK SYSTEM
 
 
-alert(
-"คุณมี "+
-notifications+
-" รายการแจ้งเตือน"
+function saveBank(){
+
+
+let bank =
+document.getElementById(
+"bankName"
+).value;
+
+
+
+let account =
+document.getElementById(
+"accountNumber"
+).value;
+
+
+
+
+localStorage.setItem(
+"bankName",
+bank
 );
 
 
 
-notifications=0;
+localStorage.setItem(
+"accountNumber",
+account
+);
 
 
 
-updateUI();
+alert(
+"บันทึกข้อมูลบัญชีแล้ว"
+);
 
 
 }
 
+
+
+
+
+
+
+
+
+// TRUE MONEY SYSTEM
+
+
+function saveTrueMoney(){
+
+
+let number =
+document.getElementById(
+"trueMoney"
+).value;
+
+
+
+
+localStorage.setItem(
+"trueMoney",
+number
+);
+
+
+
+document.getElementById(
+"connectStatus"
+).innerHTML =
+
+"🟢 เชื่อมต่อจำลองแล้ว";
+
+
+}
 
 
 
@@ -464,7 +556,6 @@ document.getElementById(
 
 
 
-
 if(upload){
 
 
@@ -472,7 +563,6 @@ if(upload){
 upload.addEventListener(
 "change",
 function(){
-
 
 
 let file=this.files[0];
@@ -483,9 +573,8 @@ if(file){
 
 
 
-let reader=
+let reader =
 new FileReader();
-
 
 
 
@@ -500,8 +589,7 @@ e.target.result
 
 
 
-
-let img=
+let img =
 document.getElementById(
 "profileImage"
 );
@@ -538,14 +626,15 @@ reader.readAsDataURL(file);
 
 
 
-let savedImage=
+
+let savedImage =
 localStorage.getItem(
 "profileImage"
 );
 
 
 
-let img=
+let img =
 document.getElementById(
 "profileImage"
 );
@@ -563,6 +652,7 @@ img.src=savedImage;
 
 
 
+
 updateUI();
 
 
@@ -574,21 +664,32 @@ updateUI();
 
 
 
+function showHome(){
 
 
-// PAGE SYSTEM
+hideAllPage();
 
 
 
-function hidePages(){
+}
 
+
+
+
+
+
+
+
+function hideAllPage(){
 
 
 let pages=[
 
+"settingsPage",
+
 "historyPage",
-"qrPage",
-"settingsPage"
+
+"qrPage"
 
 ];
 
@@ -597,73 +698,35 @@ let pages=[
 pages.forEach(function(id){
 
 
-
-let page=
+let page =
 document.getElementById(id);
 
 
 
 if(page){
 
+
 page.style.display="none";
 
-}
 
+}
 
 
 });
 
 
-}
-
-
-
-
-
-
-
-
-function showHome(){
-
-
-hidePages();
-
-
-
-document.querySelector(
-".wallet-card"
-).style.display="block";
-
-
-
-document.querySelector(
-".box"
-).style.display="block";
-
-
-
-document.querySelector(
-".menu"
-).style.display="grid";
-
 
 }
-
-
-
-
-
-
 
 
 function showHistory(){
 
 
-hidePages();
+hideAllPage();
 
 
 
-let page=
+let page =
 document.getElementById(
 "historyPage"
 );
@@ -676,12 +739,14 @@ if(page){
 page.style.display="block";
 
 
-
-let list=
+let list =
 document.getElementById(
 "historyList"
 );
 
+
+
+if(list){
 
 
 list.innerHTML="";
@@ -694,6 +759,7 @@ history.slice().reverse()
 
 
 list.innerHTML +=
+
 "<li>"+item+"</li>";
 
 
@@ -701,11 +767,16 @@ list.innerHTML +=
 });
 
 
+}
+
+
 
 }
 
 
+
 }
+
 
 
 
@@ -717,11 +788,11 @@ list.innerHTML +=
 function showQR(){
 
 
-hidePages();
+hideAllPage();
 
 
 
-let page=
+let page =
 document.getElementById(
 "qrPage"
 );
@@ -730,18 +801,28 @@ document.getElementById(
 
 if(page){
 
+
 page.style.display="block";
 
+
 }
 
 
+
 }
+
+
+
+
+
+
+
 
 
 function showSettings(){
 
 
-hidePages();
+hideAllPage();
 
 
 
@@ -754,12 +835,16 @@ document.getElementById(
 
 if(page){
 
+
 page.style.display="block";
 
+
 }
 
 
+
 }
+
 
 
 
@@ -792,6 +877,7 @@ alert(
 
 
 
+
 function toggleTheme(){
 
 
@@ -800,54 +886,9 @@ document.body.classList.toggle(
 );
 
 
-}
-
-
-
-
-
-
-
-
-function changePin(){
-
-
-let pin =
-prompt(
-"ใส่ PIN ใหม่ 4 หลัก"
-);
-
-
-
-if(pin && pin.length==4){
-
-
-localStorage.setItem(
-"pin",
-pin
-);
-
-
-
-alert(
-"เปลี่ยน PIN แล้ว"
-);
-
 
 }
 
-else{
-
-
-alert(
-"PIN ต้องมี 4 หลัก"
-);
-
-
-}
-
-
-}
 
 
 
@@ -873,18 +914,13 @@ localStorage.clear();
 
 
 
-alert(
-"ล้างข้อมูลแล้ว"
-);
-
-
-
 location.reload();
 
 
 }
 
 
+
 }
 
 
@@ -894,8 +930,7 @@ location.reload();
 
 
 
-// LOAD APP
-
+// LOAD SYSTEM
 
 
 window.onload=function(){
@@ -906,7 +941,6 @@ let login =
 localStorage.getItem(
 "login"
 );
-
 
 
 
@@ -943,12 +977,12 @@ app.style.display="block";
 }
 
 
-
 }
 
 
 
 updateUI();
+
 
 
 };
