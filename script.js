@@ -249,3 +249,39 @@ navigator.clipboard.writeText(
 alert("คัดลอกเลขบัญชีแล้ว");
 
 }
+function showSettings(){
+
+document.querySelector(".card").style.display="none";
+document.querySelector(".menu").style.display="none";
+document.querySelector(".chart-card").style.display="none";
+document.querySelector(".history").style.display="none";
+
+document.getElementById("settingsPage").style.display="block";
+
+}
+
+
+function toggleTheme(){
+
+document.body.classList.toggle("dark");
+
+}
+
+
+function clearData(){
+
+let confirmDelete = confirm(
+"ต้องการล้างข้อมูลทั้งหมดหรือไม่?"
+);
+
+if(confirmDelete){
+
+localStorage.clear();
+
+alert("ล้างข้อมูลแล้ว");
+
+location.reload();
+
+}
+
+}
