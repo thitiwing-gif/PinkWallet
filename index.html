@@ -119,11 +119,31 @@
 <canvas id="moneyChart"></canvas>
 
 </div>
+ <div id="historyPage" class="page">
+
+<h2>📋 รายการธุรกรรม</h2>
+
+<ul id="fullHistory"></ul>
+
+ </div>   
 <div class="bottom">
-    <div>🏠<br>Home</div>
-    <div>📋<br>รายการ</div>
-    <div>📷<br>QR</div>
-    <div>⚙️<br>ตั้งค่า</div>
+
+<div onclick="showHome()">
+🏠<br>Home
+</div>
+
+<div onclick="showHistory()">
+📋<br>รายการ
+</div>
+
+<div onclick="showQR()">
+📷<br>QR
+</div>
+
+<div onclick="showSettings()">
+⚙️<br>ตั้งค่า
+</div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
