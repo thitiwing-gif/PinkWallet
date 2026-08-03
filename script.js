@@ -1,11 +1,14 @@
-// Pink Wallet v0.8
+
+// Pink Wallet v1.0
+
 
 let balance =
 Number(localStorage.getItem("balance")) || 10000;
 
 
 let history =
-JSON.parse(localStorage.getItem("history")) || [
+JSON.parse(localStorage.getItem("history")) || 
+[
 "💰 เริ่มต้นระบบ ฿10,000"
 ];
 
@@ -14,11 +17,18 @@ let username =
 localStorage.getItem("username") || "Pink User";
 
 
-let hideBalance = false;
+let notifications =
+Number(localStorage.getItem("notifications")) || 0;
+
+
+let hideBalance=false;
+
+
 
 
 
 function saveData(){
+
 
 localStorage.setItem(
 "balance",
@@ -38,17 +48,11 @@ username
 );
 
 
-}
+localStorage.setItem(
+"notifications",
+notifications
+);
 
-
-
-
-
-function getTime(){
-
-let now = new Date();
-
-return now.toLocaleString("th-TH");
 
 }
 
@@ -60,44 +64,70 @@ return now.toLocaleString("th-TH");
 function updateUI(){
 
 
-let balanceBox =
-document.getElementById("balance");
+let money =
+document.getElementById(
+"balance"
+);
 
 
-if(balanceBox){
+if(money){
 
-balanceBox.innerHTML =
-hideBalance
-?
+
+money.innerHTML =
+
+hideBalance ?
+
 "฿••••••"
+
 :
-"฿" +
-balance.toLocaleString("th-TH") +
-".00";
+
+"฿"+
+balance.toLocaleString("th-TH")
++".00";
+
 
 }
 
 
 
-let nameBox =
-document.getElementById("username");
+let name =
+document.getElementById(
+"username"
+);
 
 
-if(nameBox){
+if(name){
 
-nameBox.innerHTML =
-username;
+name.innerHTML=username;
 
 }
 
+
+
+
+let count =
+document.getElementById(
+"notifyCount"
+);
+
+
+if(count){
+
+count.innerHTML=notifications;
+
+}
 
 
 
 let list =
-document.getElementById("historyList");
+document.getElementById(
+"historyList"
+);
+
 
 
 if(list){
+
 
 list.innerHTML="";
 
@@ -107,13 +137,14 @@ history.slice().reverse()
 
 
 list.innerHTML +=
-"<li>"+item+"</li>";
 
+"<li>"+item+"</li>";
 
 });
 
 
 }
+
 
 
 saveData();
@@ -126,23 +157,28 @@ saveData();
 
 
 
-
 function login(){
 
 
 let name =
-document.getElementById("loginName").value;
+document.getElementById(
+"loginName"
+).value;
 
 
 let pin =
-document.getElementById("loginPin").value;
+document.getElementById(
+"loginPin"
+).value;
 
 
 
 if(name=="" || pin.length!=4){
 
 
-alert("กรุณาใส่ชื่อและ PIN 4 หลัก");
+alert(
+"กรุณาใส่ชื่อและ PIN 4 หลัก"
+);
 
 
 return;
@@ -160,14 +196,6 @@ localStorage.setItem(
 );
 
 
-
-localStorage.setItem(
-"pin",
-pin
-);
-
-
-
 document.getElementById(
 "loginPage"
 ).style.display="none";
@@ -182,13 +210,19 @@ updateUI();
 
 
 }
-// ซ่อน / แสดงยอดเงิน
+
+
+
+
 
 function toggleBalance(){
 
-hideBalance = !hideBalance;
+
+hideBalance=!hideBalance;
+
 
 updateUI();
+
 
 }
 
@@ -196,46 +230,65 @@ updateUI();
 
 
 
-// ฝากเงิน
-
-function deposit(){
-
-balance +=100;
+function addHistory(text){
 
 
 history.push(
-"➕ ฝาก +100 บาท | " + getTime()
+text
+);
+
+
+notifications++;
+
+
+saveData();
+
+
+}
+
+function deposit(){
+
+
+balance += 100;
+
+
+addHistory(
+"➕ ฝากเงิน +100 บาท"
 );
 
 
 updateUI();
 
+
 }
 
 
 
 
-
-
-// ถอนเงิน
 
 function withdraw(){
 
 
 if(balance < 100){
 
-alert("ยอดเงินไม่พอ");
+
+alert(
+"ยอดเงินไม่พอ"
+);
+
 
 return;
+
 
 }
 
 
-balance -=100;
+
+balance -= 100;
 
 
-history.push(
-"➖ ถอน -100 บาท | " + getTime()
+addHistory(
+"➖ ถอนเงิน -100 บาท"
 );
 
 
@@ -247,28 +300,30 @@ updateUI();
 
 
 
-
-
-
-// โอนเงิน
 
 function transfer(){
 
 
 if(balance < 50){
 
-alert("ยอดเงินไม่พอ");
+
+alert(
+"ยอดเงินไม่พอ"
+);
+
 
 return;
+
 
 }
 
 
-balance -=50;
+
+balance -= 50;
 
 
-history.push(
-"↗️ โอน -50 บาท | " + getTime()
+addHistory(
+"↗️ โอนเงิน -50 บาท"
 );
 
 
@@ -280,18 +335,15 @@ updateUI();
 
 
 
-
-
-// รับเงิน
 
 function receive(){
 
 
-balance +=50;
+balance += 50;
 
 
-history.push(
-"📥 รับ +50 บาท | " + getTime()
+addHistory(
+"📥 รับเงิน +50 บาท"
 );
 
 
@@ -306,23 +358,68 @@ updateUI();
 
 
 
-// เปลี่ยนชื่อ
-
-function changeName(){
+function toggleTheme(){
 
 
-let name =
-prompt(
-"ใส่ชื่อใหม่",
-username
+document.body.classList.toggle(
+"dark"
+);
+
+
+}
+
+
+
+
+
+
+
+function clearData(){
+
+
+let ok =
+confirm(
+"ต้องการล้างข้อมูลทั้งหมดหรือไม่?"
 );
 
 
 
-if(name){
+if(ok){
 
 
-username=name;
+localStorage.clear();
+
+
+location.reload();
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+function showNotification(){
+
+
+alert(
+"มีรายการใหม่ "
++
+notifications
++
+" รายการ"
+);
+
+
+notifications=0;
+
+
+saveData();
 
 
 updateUI();
@@ -331,231 +428,37 @@ updateUI();
 }
 
 
-}
 
 
 
 
-
-
-
-// อัปโหลดรูปโปรไฟล์
-
-document.addEventListener(
-"DOMContentLoaded",
-function(){
-
-
-let upload =
-document.getElementById(
-"imageUpload"
-);
-
-
-
-if(upload){
-
-
-upload.addEventListener(
-"change",
-function(){
-
-
-let file =
-this.files[0];
-
-
-
-if(file){
-
-
-let reader =
-new FileReader();
-
-
-
-reader.onload=function(e){
-
-
-localStorage.setItem(
-"profileImage",
-e.target.result
-);
-
-
-
-let img =
-document.getElementById(
-"profileImage"
-);
-
-
-
-let img2 =
-document.getElementById(
-"profileImageCard"
-);
-
-
-
-if(img){
-
-img.src=e.target.result;
-
-}
-
-
-
-if(img2){
-
-img2.src=e.target.result;
-
-}
-
-
-
-};
-
-
-
-reader.readAsDataURL(file);
-
-
-}
-
-
-});
-
-
-}
-
-
-});
-
-// โหลดรูปเดิม
-
-window.addEventListener(
-"load",
-function(){
-
-let savedImage =
-localStorage.getItem(
-"profileImage"
-);
-
-
-if(savedImage){
-
-
-let img =
-document.getElementById(
-"profileImage"
-);
-
-
-let img2 =
-document.getElementById(
-"profileImageCard"
-);
-
-
-
-if(img){
-
-img.src=savedImage;
-
-}
-
-
-
-if(img2){
-
-img2.src=savedImage;
-
-}
-
-
-}
-
-
-updateUI();
-
-
-});
-
-
-
-
-
-
-
-// แสดงหน้ารายการ
-
-function showHistory(){
-
-
-hidePages();
-
-
-let page =
-document.getElementById(
-"historyPage"
-);
-
-
-if(page){
-
-
-page.style.display="block";
-
-
-let list =
-document.getElementById(
-"fullHistory"
-);
-
-
-list.innerHTML="";
-
-
-history.slice().reverse()
-.forEach(item=>{
-
-
-list.innerHTML +=
-"<li>"+item+"</li>";
-
-
-});
-
-
-}
-
-
-}
-
-
-
-
-
-
-// หน้า Home
 
 function showHome(){
 
 
-hidePages();
+document.getElementById(
+"qrPage"
+).style.display="none";
 
 
-document.querySelector(".card").style.display="block";
+document.getElementById(
+"settingsPage"
+).style.display="none";
 
-document.querySelector(".profile-card").style.display="flex";
 
-document.querySelector(".menu").style.display="grid";
+document.querySelector(
+".card"
+).style.display="block";
 
-document.querySelector(".history").style.display="block";
 
-document.querySelector(".chart-card").style.display="block";
+document.querySelector(
+".menu"
+).style.display="grid";
+
+
+document.querySelector(
+".history"
+).style.display="block";
 
 
 }
@@ -565,55 +468,39 @@ document.querySelector(".chart-card").style.display="block";
 
 
 
-// หน้า QR
 
 function showQR(){
 
 
-hidePages();
-
-
-let qr =
 document.getElementById(
 "qrPage"
-);
+).style.display="block";
 
 
-if(qr){
+document.getElementById(
+"settingsPage"
+).style.display="none";
 
-qr.style.display="block";
 
 }
 
 
-}
 
 
 
 
-
-
-
-// หน้า Settings
 
 function showSettings(){
 
 
-hidePages();
-
-
-let setting =
 document.getElementById(
 "settingsPage"
-);
+).style.display="block";
 
 
-
-if(setting){
-
-setting.style.display="block";
-
-}
+document.getElementById(
+"qrPage"
+).style.display="none";
 
 
 }
@@ -623,45 +510,6 @@ setting.style.display="block";
 
 
 
-
-function hidePages(){
-
-
-let pages=[
-
-"#historyPage",
-"#qrPage",
-"#settingsPage"
-
-];
-
-
-pages.forEach(function(item){
-
-
-let page =
-document.querySelector(item);
-
-
-if(page){
-
-page.style.display="none";
-
-}
-
-
-});
-
-
-}
-
-
-
-
-
-
-
-// คัดลอกบัญชี
 
 function copyAccount(){
 
@@ -684,65 +532,6 @@ alert(
 
 
 
-
-// เปลี่ยนธีม
-
-function toggleTheme(){
-
-
-document.body.classList.toggle(
-"dark"
-);
-
-
-}
-
-
-
-
-
-
-
-
-// ล้างข้อมูล
-
-function clearData(){
-
-
-let ok =
-confirm(
-"ต้องการล้างข้อมูลทั้งหมดหรือไม่?"
-);
-
-
-
-if(ok){
-
-
-localStorage.clear();
-
-
-alert(
-"ล้างข้อมูลเรียบร้อย"
-);
-
-
-location.reload();
-
-
-}
-
-
-}
-
-
-
-
-
-
-
-// ตรวจ PIN ตอนเปิดใหม่
-
 window.onload=function(){
 
 
@@ -752,39 +541,25 @@ localStorage.getItem(
 );
 
 
+
 if(login==="true"){
 
 
-let loginPage =
 document.getElementById(
 "loginPage"
-);
+).style.display="none";
 
 
-let app =
 document.getElementById(
 "app"
-);
-
-
-
-if(loginPage){
-
-loginPage.style.display="none";
-
-}
-
-
-if(app){
-
-app.style.display="block";
-
-}
-
+).style.display="block";
 
 
 }
 
+
+
+updateUI();
 
 
 };
