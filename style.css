@@ -84,3 +84,36 @@ margin-top:15px;
 opacity:.9;
 font-size:14px;
 }
+.bank-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:15px;
+}
+
+.badge{
+background:#2ecc71;
+color:white;
+padding:6px 12px;
+border-radius:20px;
+font-size:12px;
+font-weight:bold;
+}
+
+.title{
+color:#777;
+margin-bottom:8px;
+}
+
+.eye-btn{
+margin-top:15px;
+background:#ff4fa3;
+color:white;
+width:100%;
+}
+
+.card hr{
+margin:20px 0;
+border:none;
+border-top:1px solid #eee;
+}
