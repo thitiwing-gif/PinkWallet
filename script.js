@@ -3206,7 +3206,61 @@ console.log(
 
 }
 
+document.addEventListener(
+"DOMContentLoaded",
+function(){
 
+let upload =
+document.getElementById(
+"imageUpload"
+);
+
+
+if(upload){
+
+upload.addEventListener(
+"change",
+function(){
+
+let file=this.files[0];
+
+
+if(file){
+
+let reader=new FileReader();
+
+
+reader.onload=function(e){
+
+localStorage.setItem(
+"profileImage",
+e.target.result
+);
+
+
+let img=document.getElementById(
+"profileImage"
+);
+
+
+if(img){
+
+img.src=e.target.result;
+
+}
+
+};
+
+
+reader.readAsDataURL(file);
+
+}
+
+});
+
+}
+
+});
 
 /* START APPLICATION */
 
