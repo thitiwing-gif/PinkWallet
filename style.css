@@ -270,3 +270,14 @@ padding:12px 20px;
 border-radius:20px;
 
 }
+.setting-item{
+
+background:white;
+padding:18px;
+margin:10px 0;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+cursor:pointer;
+font-weight:bold;
+
+}
