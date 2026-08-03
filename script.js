@@ -228,3 +228,24 @@ function showHome(){
 location.reload();
 
 }
+function showQR(){
+
+document.querySelector(".card").style.display="none";
+document.querySelector(".menu").style.display="none";
+document.querySelector(".chart-card").style.display="none";
+document.querySelector(".history").style.display="none";
+
+document.getElementById("qrPage").style.display="block";
+
+}
+
+
+function copyAccount(){
+
+navigator.clipboard.writeText(
+"123-4-56789-0"
+);
+
+alert("คัดลอกเลขบัญชีแล้ว");
+
+}
