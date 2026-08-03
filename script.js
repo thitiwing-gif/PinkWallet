@@ -105,3 +105,43 @@ document.getElementById("username").innerHTML = savedName;
 }
 
 }
+const imageUpload = document.getElementById("imageUpload");
+
+if(imageUpload){
+
+imageUpload.addEventListener("change",function(){
+
+const file = this.files[0];
+
+if(file){
+
+const reader = new FileReader();
+
+reader.onload=function(e){
+
+document.getElementById("profileImage").src = e.target.result;
+
+localStorage.setItem("profileImage", e.target.result);
+
+}
+
+reader.readAsDataURL(file);
+
+}
+
+});
+
+}
+
+
+window.addEventListener("load",function(){
+
+const savedImage = localStorage.getItem("profileImage");
+
+if(savedImage){
+
+document.getElementById("profileImage").src = savedImage;
+
+}
+
+});
