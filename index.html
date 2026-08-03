@@ -1,918 +1,392 @@
+<!DOCTYPE html>
+<html lang="th">
 
-// Pink Wallet v0.9
+<head>
 
-let balance =
-Number(localStorage.getItem("balance")) || 10000;
+<meta charset="UTF-8">
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-let history =
-JSON.parse(localStorage.getItem("history")) || [
-"💰 เริ่มต้นระบบ ฿10,000"
-];
+<title>Pink Wallet</title>
 
+<link rel="stylesheet" href="style.css">
 
-let username =
-localStorage.getItem("username") || "Pink User";
+</head>
 
 
-let notifications =
-Number(localStorage.getItem("notifications")) || 0;
+<body>
 
 
-let hideBalance = false;
+<div id="loginPage">
 
+<h1>💗 Pink Wallet</h1>
 
+<input id="loginName" placeholder="ชื่อผู้ใช้">
 
-function saveData(){
 
-localStorage.setItem(
-"balance",
-balance
-);
+<input id="loginPin"
+type="password"
+maxlength="4"
+placeholder="PIN 4 หลัก">
 
 
-localStorage.setItem(
-"history",
-JSON.stringify(history)
-);
+<button onclick="login()">
+เข้าสู่ Wallet
+</button>
 
 
-localStorage.setItem(
-"username",
-username
-);
+</div>
 
 
-localStorage.setItem(
-"notifications",
-notifications
-);
 
-}
 
 
+<div id="app">
 
 
+<div class="header">
 
-function getTime(){
 
-let now = new Date();
+<div class="profile">
 
-return now.toLocaleString("th-TH");
 
-}
+<div class="avatar">
 
+<img id="profileImage"
+src="https://via.placeholder.com/80">
 
+</div>
 
 
+<div>
 
-function addNotification(){
+<h2>Pink Wallet</h2>
 
+<p>
+สวัสดี,
+<span id="username">
+Pink User
+</span>
+</p>
 
-notifications++;
+</div>
 
 
-localStorage.setItem(
-"notifications",
-notifications
-);
+</div>
 
 
 
-let count =
-document.getElementById(
-"notifyCount"
-);
+<div class="notification"
+onclick="showNotification()">
 
+🔔
 
-
-if(count){
-
-count.innerHTML =
-notifications;
-
-}
-
-
-}
-
-
-
-
-
-
-
-function updateUI(){
-
-
-let balanceBox =
-document.getElementById("balance");
-
-
-
-if(balanceBox){
-
-
-balanceBox.innerHTML =
-
-hideBalance
-
-?
-
-"฿••••••"
-
-:
-
-"฿"+
-balance.toLocaleString("th-TH")
-+".00";
-
-
-}
-
-
-
-
-
-let nameBox =
-document.getElementById("username");
-
-
-
-if(nameBox){
-
-nameBox.innerHTML =
-username;
-
-}
-
-
-
-
-
-
-let count =
-document.getElementById(
-"notifyCount"
-);
-
-
-
-if(count){
-
-count.innerHTML =
-notifications;
-
-}
-
-
-
-
-
-
-let list =
-document.getElementById(
-"historyList"
-);
-
-
-
-if(list){
-
-
-list.innerHTML="";
-
-
-
-history.slice().reverse()
-.forEach(item=>{
-
-
-list.innerHTML +=
-
-"<li>"+item+"</li>";
-
-
-});
-
-
-}
-
-
-
-saveData();
-
-
-}
-
-
-function login(){
-
-
-let name =
-document.getElementById(
-"loginName"
-).value;
-
-
-let pin =
-document.getElementById(
-"loginPin"
-).value;
-
-
-
-if(name=="" || pin.length!=4){
-
-
-alert(
-"กรุณาใส่ชื่อและ PIN 4 หลัก"
-);
-
-
-return;
-
-
-}
-
-
-
-username=name;
-
-
-localStorage.setItem(
-"login",
-"true"
-);
-
-
-localStorage.setItem(
-"pin",
-pin
-);
-
-
-
-document.getElementById(
-"loginPage"
-).style.display="none";
-
-
-document.getElementById(
-"app"
-).style.display="block";
-
-
-updateUI();
-
-
-}
-
-
-
-
-
-
-
-
-function toggleBalance(){
-
-hideBalance=!hideBalance;
-
-updateUI();
-
-}
-
-
-
-
-
-
-
-
-function deposit(){
-
-
-balance+=100;
-
-
-history.push(
-"➕ ฝาก +100 บาท | "+
-getTime()
-);
-
-
-addNotification();
-
-
-updateUI();
-
-
-}
-
-
-
-
-
-
-
-
-function withdraw(){
-
-
-if(balance<100){
-
-alert(
-"ยอดเงินไม่พอ"
-);
-
-return;
-
-}
-
-
-
-balance-=100;
-
-
-history.push(
-"➖ ถอน -100 บาท | "+
-getTime()
-);
-
-
-
-addNotification();
-
-
-updateUI();
-
-
-}
-
-
-
-
-
-
-
-
-function transfer(){
-
-
-if(balance<50){
-
-alert(
-"ยอดเงินไม่พอ"
-);
-
-return;
-
-}
-
-
-
-balance-=50;
-
-
-history.push(
-"↗️ โอน -50 บาท | "+
-getTime()
-);
-
-
-
-addNotification();
-
-
-updateUI();
-
-
-}
-
-
-
-
-
-
-
-
-function receive(){
-
-
-balance+=50;
-
-
-history.push(
-"📥 รับ +50 บาท | "+
-getTime()
-);
-
-
-
-addNotification();
-
-
-updateUI();
-
-
-}
-
-
-
-
-
-
-
-
-function changeName(){
-
-
-let name =
-prompt(
-"ใส่ชื่อใหม่",
-username
-);
-
-
-
-if(name){
-
-
-username=name;
-
-
-updateUI();
-
-
-}
-
-
-}
-
-
-
-
-
-
-
-
-function showNotification(){
-
-
-alert(
-"คุณมี "+
-notifications+
-" รายการแจ้งเตือน"
-);
-
-
-notifications=0;
-
-
-localStorage.setItem(
-"notifications",
+<span id="notifyCount">
 0
-);
+</span>
 
+</div>
 
 
-updateUI();
+</div>
 
 
-}
 
-// รูปโปรไฟล์
 
-document.addEventListener(
-"DOMContentLoaded",
-function(){
 
 
-let upload =
-document.getElementById(
-"imageUpload"
-);
+<div class="card">
 
 
+<div class="bank-header">
 
-if(upload){
+<h3>💳 Pink Wallet</h3>
 
+<span class="badge">
+SIMULATION
+</span>
 
-upload.addEventListener(
-"change",
-function(){
+</div>
 
 
-let file =
-this.files[0];
 
+<p>
+ยอดเงินคงเหลือ
+</p>
 
 
-if(file){
+<div class="balance"
+id="balance">
 
+฿10,000.00
 
-let reader =
-new FileReader();
+</div>
 
 
 
-reader.onload=function(e){
+<button onclick="toggleBalance()">
 
+👁 ซ่อน/แสดงยอดเงิน
 
-localStorage.setItem(
-"profileImage",
-e.target.result
-);
+</button>
 
 
 
-let img =
-document.getElementById(
-"profileImage"
-);
+<hr>
 
 
+<p>
+🏦 Pink Bank
+</p>
 
-let imgCard =
-document.getElementById(
-"profileImageCard"
-);
 
+<p>
+123-4-56789-0
+</p>
 
 
-if(img){
+</div>
 
-img.src=e.target.result;
 
-}
 
 
-if(imgCard){
 
-imgCard.src=e.target.result;
 
-}
+<div class="menu">
 
 
-};
+<div class="menu-item"
+onclick="deposit()">
 
+<div class="icon">
+➕
+</div>
 
+ฝาก
 
-reader.readAsDataURL(file);
+</div>
 
 
-}
 
+<div class="menu-item"
+onclick="withdraw()">
 
-});
+<div class="icon">
+➖
+</div>
 
+ถอน
 
-}
+</div>
 
 
 
-let savedImage =
-localStorage.getItem(
-"profileImage"
-);
+<div class="menu-item"
+onclick="transfer()">
 
+<div class="icon">
+↗️
+</div>
 
+โอน
 
-if(savedImage){
+</div>
 
 
-let img =
-document.getElementById(
-"profileImage"
-);
 
+<div class="menu-item"
+onclick="receive()">
 
-let imgCard =
-document.getElementById(
-"profileImageCard"
-);
+<div class="icon">
+📥
+</div>
 
+รับ
 
+</div>
 
-if(img){
 
-img.src=savedImage;
 
-}
+<div class="menu-item">
 
+<div class="icon">
+📱
+</div>
 
+เติมเงิน
 
-if(imgCard){
+</div>
 
-imgCard.src=savedImage;
 
-}
 
+<div class="menu-item"
+onclick="showQR()">
 
-}
+<div class="icon">
+📷
+</div>
 
+QR
 
-updateUI();
+</div>
 
+<div class="history">
 
-});
+<h3>
+📋 ธุรกรรมล่าสุด
+</h3>
 
+<ul id="historyList">
 
+</ul>
 
+</div>
 
 
 
-// ซ่อนหน้า
 
-function hidePages(){
 
+<div id="qrPage" class="page">
 
-let pages=[
 
-"#historyPage",
-"#qrPage",
-"#settingsPage"
+<h2>
+📷 รับเงินด้วย QR
+</h2>
 
-];
 
+<div class="qr-box">
 
-pages.forEach(function(p){
 
+<img 
+src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=PinkWallet">
 
-let el =
-document.querySelector(p);
 
+</div>
 
-if(el){
 
-el.style.display="none";
+<p>
+บัญชี: 123-4-56789-0
+</p>
 
-}
 
+<button onclick="copyAccount()">
 
-});
+📋 คัดลอกเลขบัญชี
 
+</button>
 
-}
 
+</div>
 
 
 
 
 
-function showHome(){
 
+<div id="settingsPage" class="page">
 
-hidePages();
 
+<h2>
+⚙️ ตั้งค่า
+</h2>
 
-document.querySelector(".card").style.display="block";
 
-document.querySelector(".profile-card").style.display="flex";
 
-document.querySelector(".menu").style.display="grid";
+<div class="setting-item"
+onclick="toggleTheme()">
 
-document.querySelector(".history").style.display="block";
+🌙 เปลี่ยนธีม
 
-document.querySelector(".chart-card").style.display="block";
+</div>
 
 
-}
 
 
+<div class="setting-item"
+onclick="clearData()">
 
+🗑 ล้างข้อมูล
 
+</div>
 
 
 
-function showHistory(){
 
+<div class="setting-item">
 
-hidePages();
+💗 Pink Wallet v1.0
 
+</div>
 
-let page =
-document.getElementById(
-"historyPage"
-);
 
 
+</div>
 
-if(page){
 
 
-page.style.display="block";
 
 
-let list =
-document.getElementById(
-"fullHistory"
-);
 
+<div class="bottom">
 
-list.innerHTML="";
 
+<div onclick="showHome()">
 
-history.slice().reverse()
-.forEach(item=>{
+🏠
+<br>
 
+Home
 
-list.innerHTML +=
-"<li>"+item+"</li>";
+</div>
 
 
-});
 
+<div onclick="showHistory()">
 
-}
+📋
+<br>
 
+รายการ
 
-}
+</div>
 
 
 
+<div onclick="showQR()">
 
+📷
+<br>
 
+QR
 
+</div>
 
-function showQR(){
 
 
-hidePages();
+<div onclick="showSettings()">
 
+⚙️
+<br>
 
-let qr =
-document.getElementById(
-"qrPage"
-);
+ตั้งค่า
 
+</div>
 
-if(qr){
 
-qr.style.display="block";
+</div>
 
-}
 
 
-}
+</div>
 
 
 
 
+<script src="script.js"></script>
 
 
+</body>
 
-function showSettings(){
+</html>
 
-
-hidePages();
-
-
-let setting =
-document.getElementById(
-"settingsPage"
-);
-
-
-
-if(setting){
-
-setting.style.display="block";
-
-}
-
-
-}
-
-
-
-
-
-
-
-function copyAccount(){
-
-
-navigator.clipboard.writeText(
-"123-4-56789-0"
-);
-
-
-alert(
-"คัดลอกเลขบัญชีแล้ว"
-);
-
-
-}
-
-
-
-
-
-
-
-function toggleTheme(){
-
-
-document.body.classList.toggle(
-"dark"
-);
-
-
-}
-
-
-
-
-
-
-
-
-function clearData(){
-
-
-let ok =
-confirm(
-"ต้องการล้างข้อมูลทั้งหมดหรือไม่?"
-);
-
-
-
-if(ok){
-
-
-localStorage.clear();
-
-
-alert(
-"ล้างข้อมูลแล้ว"
-);
-
-
-
-location.reload();
-
-
-}
-
-
-}
-
-
-
-
-
-
-
-// โหลดระบบเมื่อเปิดเว็บ
-
-window.onload=function(){
-
-
-let login =
-localStorage.getItem(
-"login"
-);
-
-
-
-if(login==="true"){
-
-
-let loginPage =
-document.getElementById(
-"loginPage"
-);
-
-
-let app =
-document.getElementById(
-"app"
-);
-
-
-
-if(loginPage){
-
-loginPage.style.display="none";
-
-}
-
-
-
-if(app){
-
-app.style.display="block";
-
-}
-
-
-}
-
-
-
-updateUI();
-
-
-};  
+</div>
