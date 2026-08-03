@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Pink Wallet</title>
+<title>Pink Wallet v1.1</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -19,19 +19,26 @@
 
 <div id="loginPage">
 
+
 <h1>💗 Pink Wallet</h1>
 
-<input id="loginName" placeholder="ชื่อผู้ใช้">
+
+<input 
+id="loginName"
+placeholder="ชื่อผู้ใช้">
 
 
-<input id="loginPin"
+<input 
+id="loginPin"
 type="password"
 maxlength="4"
 placeholder="PIN 4 หลัก">
 
 
 <button onclick="login()">
+
 เข้าสู่ Wallet
+
 </button>
 
 
@@ -41,7 +48,9 @@ placeholder="PIN 4 หลัก">
 
 
 
+
 <div id="app">
+
 
 
 <div class="header">
@@ -52,15 +61,21 @@ placeholder="PIN 4 หลัก">
 
 <div class="avatar">
 
+
 <img id="profileImage"
-src="https://via.placeholder.com/80">
+src="https://via.placeholder.com/100">
+
 
 </div>
 
 
 <div>
 
-<h2>Pink Wallet</h2>
+
+<h2>
+Pink Wallet
+</h2>
+
 
 <p>
 สวัสดี,
@@ -69,15 +84,19 @@ Pink User
 </span>
 </p>
 
+
 </div>
 
 
 </div>
+
+
 
 
 
 <div class="notification"
 onclick="showNotification()">
+
 
 🔔
 
@@ -85,25 +104,29 @@ onclick="showNotification()">
 0
 </span>
 
-</div>
-
 
 </div>
 
 
+</div>
 
 
 
 
-<div class="card">
 
 
-<div class="bank-header">
+<div class="wallet-card">
 
-<h3>💳 Pink Wallet</h3>
 
-<span class="badge">
-SIMULATION
+<div class="card-top">
+
+<h3>
+💳 Pink Wallet
+</h3>
+
+
+<span>
+V1.1
 </span>
 
 </div>
@@ -115,8 +138,9 @@ SIMULATION
 </p>
 
 
-<div class="balance"
-id="balance">
+
+<div id="balance"
+class="balance">
 
 ฿10,000.00
 
@@ -126,28 +150,47 @@ id="balance">
 
 <button onclick="toggleBalance()">
 
-👁 ซ่อน/แสดงยอดเงิน
+👁 ดู/ซ่อนยอดเงิน
 
 </button>
 
 
 
-<hr>
+</div>
 
 
-<p>
-🏦 Pink Bank
-</p>
 
 
-<p>
-123-4-56789-0
+
+
+
+<div class="profile-box">
+
+
+<div>
+
+
+<h3>
+👤 โปรไฟล์
+</h3>
+
+
+<p id="profileName">
+Pink User
 </p>
 
 
 </div>
 
 
+<button onclick="changeName()">
+
+เปลี่ยนชื่อ
+
+</button>
+
+
+</div>
 
 
 
@@ -162,9 +205,11 @@ onclick="deposit()">
 ➕
 </div>
 
-ฝาก
+ฝากเงิน
 
 </div>
+
+
 
 
 
@@ -175,9 +220,11 @@ onclick="withdraw()">
 ➖
 </div>
 
-ถอน
+ถอนเงิน
 
 </div>
+
+
 
 
 
@@ -188,9 +235,11 @@ onclick="transfer()">
 ↗️
 </div>
 
-โอน
+โอนเงิน
 
 </div>
+
+
 
 
 
@@ -201,21 +250,26 @@ onclick="receive()">
 📥
 </div>
 
-รับ
+รับเงิน
 
 </div>
 
 
 
-<div class="menu-item">
+
+
+<div class="menu-item"
+onclick="showHistory()">
 
 <div class="icon">
-📱
+📋
 </div>
 
-เติมเงิน
+รายการ
 
 </div>
+
+
 
 
 
@@ -230,17 +284,52 @@ QR
 
 </div>
 
-<div class="history">
+
+</div>
+
+
+
+
+
+
+
+<div class="chart-card">
+
 
 <h3>
-📋 ธุรกรรมล่าสุด
+📊 รายรับ - รายจ่าย
 </h3>
 
-<ul id="historyList">
+
+<canvas id="moneyChart"></canvas>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div id="historyPage" class="page">
+
+
+<h2>
+📋 ประวัติธุรกรรม
+</h2>
+
+
+<ul id="fullHistory">
 
 </ul>
 
+
 </div>
+
+
+
 
 
 
@@ -254,19 +343,22 @@ QR
 </h2>
 
 
+
 <div class="qr-box">
 
 
-<img 
+<img id="qrImage"
 src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=PinkWallet">
 
 
 </div>
 
 
+
 <p>
 บัญชี: 123-4-56789-0
 </p>
+
 
 
 <button onclick="copyAccount()">
@@ -277,11 +369,6 @@ src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=PinkWallet">
 
 
 </div>
-
-
-
-
-
 
 <div id="settingsPage" class="page">
 
@@ -303,6 +390,17 @@ onclick="toggleTheme()">
 
 
 <div class="setting-item"
+onclick="changePin()">
+
+🔐 เปลี่ยน PIN
+
+</div>
+
+
+
+
+
+<div class="setting-item"
 onclick="clearData()">
 
 🗑 ล้างข้อมูล
@@ -314,13 +412,14 @@ onclick="clearData()">
 
 <div class="setting-item">
 
-💗 Pink Wallet v1.0
+💗 Pink Wallet v1.1
 
 </div>
 
 
-
 </div>
+
+
 
 
 
@@ -334,10 +433,11 @@ onclick="clearData()">
 
 🏠
 <br>
-
 Home
 
 </div>
+
+
 
 
 
@@ -345,10 +445,11 @@ Home
 
 📋
 <br>
-
 รายการ
 
 </div>
+
+
 
 
 
@@ -356,10 +457,11 @@ Home
 
 📷
 <br>
-
 QR
 
 </div>
+
+
 
 
 
@@ -367,7 +469,6 @@ QR
 
 ⚙️
 <br>
-
 ตั้งค่า
 
 </div>
@@ -377,16 +478,19 @@ QR
 
 
 
+
 </div>
 
 
 
 
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script src="script.js"></script>
+
 
 
 </body>
 
 </html>
-
-</div>
