@@ -1,9 +1,17 @@
 
+/* Pink Wallet v6.0 */
+
+
+/* RESET */
+
+
 *{
 
 box-sizing:border-box;
 
-font-family:Arial,sans-serif;
+font-family:
+"Arial",
+sans-serif;
 
 }
 
@@ -13,7 +21,7 @@ body{
 
 margin:0;
 
-background:#f7f7fb;
+background:#fff4fa;
 
 color:#333;
 
@@ -23,64 +31,13 @@ padding-bottom:90px;
 
 
 
-/* LOGIN */
-
-
-#loginPage{
-
-height:100vh;
-
-display:flex;
-
-flex-direction:column;
-
-justify-content:center;
-
-align-items:center;
-
-gap:15px;
-
-background:linear-gradient(
-135deg,
-#ff4fa3,
-#ffb6d9
-);
-
-}
-
-
-
-#loginPage h1{
-
-color:white;
-
-font-size:40px;
-
-}
-
-
-
-#loginPage input{
-
-width:280px;
-
-padding:15px;
-
-border:none;
-
-border-radius:25px;
-
-font-size:16px;
-
-}
-
 
 
 button{
 
 border:none;
 
-padding:12px 25px;
+padding:12px 20px;
 
 border-radius:25px;
 
@@ -97,6 +54,85 @@ cursor:pointer;
 
 
 
+input,
+select{
+
+width:100%;
+
+padding:14px;
+
+margin:8px 0;
+
+border-radius:20px;
+
+border:1px solid #ddd;
+
+}
+
+
+
+
+
+/* LOGIN */
+
+
+#loginPage{
+
+min-height:100vh;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+background:
+linear-gradient(
+135deg,
+#ff8acb,
+#ff4fa3
+);
+
+}
+
+
+
+
+.login-box{
+
+width:90%;
+
+max-width:400px;
+
+background:white;
+
+padding:30px;
+
+border-radius:30px;
+
+text-align:center;
+
+box-shadow:
+0 10px 30px rgba(0,0,0,.15);
+
+}
+
+
+
+
+
+.login-box h1{
+
+color:#ff4fa3;
+
+}
+
+
+
+
+
+/* APP */
+
 
 #app{
 
@@ -108,22 +144,94 @@ display:none;
 
 
 
-/* HEADER */
+.top-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:20px;
+
+}
 
 
-header{
 
-background:linear-gradient(
+
+
+.user-profile{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+}
+
+
+
+
+
+.user-profile img{
+
+width:70px;
+
+height:70px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+}
+
+
+
+.top-icons{
+
+display:flex;
+
+gap:20px;
+
+font-size:24px;
+
+}
+
+
+
+/* WALLET CARD */
+
+
+.wallet-card{
+
+margin:20px;
+
+padding:25px;
+
+border-radius:30px;
+
+background:
+
+linear-gradient(
 135deg,
 #ff4fa3,
-#ff8ac8
+#ff8acb
 );
 
 color:white;
 
-padding:25px;
+box-shadow:
 
-border-radius:0 0 35px 35px;
+0 10px 25px
+rgba(255,79,163,.3);
+
+}
+
+
+
+
+.wallet-title{
 
 display:flex;
 
@@ -135,85 +243,59 @@ align-items:center;
 
 
 
-.profile{
-
-display:flex;
-
-align-items:center;
-
-gap:15px;
-
-}
-
-
-
-.profile img{
-
-width:80px;
-
-height:80px;
-
-border-radius:50%;
-
-object-fit:cover;
+#modeBadge{
 
 background:white;
-
-}
-
-
-
-
-
-
-/* WALLET */
-
-
-.wallet{
-
-background:white;
-
-margin:20px;
-
-padding:25px;
-
-border-radius:25px;
-
-box-shadow:0 10px 25px rgba(0,0,0,.1);
-
-}
-
-
-
-.wallet h1{
-
-font-size:40px;
 
 color:#ff4fa3;
 
+padding:6px 12px;
+
+border-radius:20px;
+
+font-size:12px;
+
 }
 
 
-/* MODE BOX */
 
 
-.mode-box{
 
-background:white;
+.wallet-card h1{
+
+font-size:42px;
+
+margin:15px 0;
+
+}
+
+
+
+
+
+/* MODE */
+
+
+.system-mode{
 
 margin:20px;
 
 padding:20px;
 
-border-radius:20px;
+background:white;
 
-box-shadow:0 6px 18px rgba(0,0,0,.08);
+border-radius:25px;
+
+box-shadow:
+
+0 5px 15px
+rgba(0,0,0,.08);
 
 }
 
 
 
-.mode-box button{
+.system-mode button{
 
 margin:5px;
 
@@ -221,9 +303,117 @@ margin:5px;
 
 
 
-#modeStatus{
 
-font-weight:bold;
+
+/* QUICK ACTION */
+
+
+.quick-actions{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(3,1fr);
+
+gap:15px;
+
+padding:20px;
+
+}
+
+
+
+
+
+.quick-actions div{
+
+background:white;
+
+padding:20px 10px;
+
+border-radius:25px;
+
+text-align:center;
+
+box-shadow:
+
+0 5px 15px
+rgba(0,0,0,.08);
+
+transition:.3s;
+
+}
+
+
+
+
+.quick-actions div:hover{
+
+transform:translateY(-5px);
+
+}
+
+
+
+
+.action-icon{
+
+font-size:30px;
+
+}
+
+
+
+/* SUMMARY CARD */
+
+
+.summary-card{
+
+margin:20px;
+
+padding:25px;
+
+background:white;
+
+border-radius:30px;
+
+box-shadow:
+
+0 5px 15px
+rgba(0,0,0,.08);
+
+}
+
+
+
+.summary-card h3{
+
+margin-top:0;
+
+}
+
+
+
+.summary-item{
+
+display:flex;
+
+justify-content:space-between;
+
+padding:15px 0;
+
+border-bottom:
+
+1px solid #eee;
+
+}
+
+
+
+
+
+.summary-item strong{
 
 color:#ff4fa3;
 
@@ -233,95 +423,58 @@ color:#ff4fa3;
 
 
 
-/* ACTION MENU */
 
 
-.actions{
 
-display:grid;
+/* CHART */
 
-grid-template-columns:repeat(3,1fr);
 
-gap:15px;
+.chart-card{
 
 margin:20px;
 
-}
-
-
-
-.actions div{
+padding:25px;
 
 background:white;
 
-padding:20px 10px;
+border-radius:30px;
 
-text-align:center;
+box-shadow:
 
-border-radius:20px;
-
-box-shadow:0 6px 18px rgba(0,0,0,.08);
-
-cursor:pointer;
-
-font-weight:bold;
+0 5px 15px
+rgba(0,0,0,.08);
 
 }
 
 
 
+#moneyChart{
+
+width:100%;
+
+height:250px;
+
+}
 
 
-/* PAGE */
 
 
-.page{
 
-display:none;
 
-background:white;
+
+
+/* SEARCH */
+
+
+.search-card{
 
 margin:20px;
 
 padding:20px;
 
-border-radius:20px;
+background:white;
 
-box-shadow:0 6px 18px rgba(0,0,0,.08);
-
-}
-
-
-
-.page input{
-
-width:100%;
-
-padding:14px;
-
-margin:8px 0;
-
-border:1px solid #ddd;
-
-border-radius:20px;
-
-}
-
-
-
-
-/* QR */
-
-
-#qrPage img{
-
-display:block;
-
-margin:20px auto;
-
-width:200px;
-
-height:200px;
+border-radius:25px;
 
 }
 
@@ -329,10 +482,39 @@ height:200px;
 
 
 
-/* HISTORY */
+.search-card input{
+
+background:#fff8fc;
+
+}
 
 
-#historyList{
+
+
+
+
+
+
+/* TRANSACTION */
+
+
+.transaction-card{
+
+margin:20px;
+
+padding:25px;
+
+background:white;
+
+border-radius:30px;
+
+}
+
+
+
+
+
+.transaction-card ul{
 
 padding:0;
 
@@ -342,15 +524,47 @@ list-style:none;
 
 
 
-#historyList li{
 
-background:#f5f5f5;
+
+.transaction-card li{
+
+background:#fff4fa;
 
 margin:10px 0;
 
 padding:15px;
 
-border-radius:15px;
+border-radius:20px;
+
+}
+
+
+
+/* RECEIVER */
+
+
+.receiver-card{
+
+margin:20px;
+
+padding:25px;
+
+background:white;
+
+border-radius:30px;
+
+box-shadow:
+
+0 5px 15px
+rgba(0,0,0,.08);
+
+}
+
+
+
+.receiver-card button{
+
+margin-top:15px;
 
 }
 
@@ -358,10 +572,480 @@ border-radius:15px;
 
 
 
-/* BOTTOM */
+/* RECEIPT */
 
 
-.bottom{
+.receipt-card{
+
+margin:20px;
+
+padding:25px;
+
+background:white;
+
+border-radius:30px;
+
+}
+
+
+
+
+
+.receipt-detail{
+
+background:#fff4fa;
+
+padding:20px;
+
+border-radius:20px;
+
+}
+
+
+
+
+
+
+
+
+/* BANK CARD */
+
+
+.bank-card{
+
+margin:20px;
+
+padding:25px;
+
+background:white;
+
+border-radius:30px;
+
+box-shadow:
+
+0 5px 15px
+rgba(0,0,0,.08);
+
+}
+
+
+
+
+.bank-info{
+
+display:flex;
+
+align-items:center;
+
+gap:20px;
+
+}
+
+
+
+
+
+.bank-info img{
+
+width:60px;
+
+height:60px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+}
+
+
+
+
+
+/* CONNECTION */
+
+
+.connection-card{
+
+margin:20px;
+
+padding:25px;
+
+background:white;
+
+border-radius:30px;
+
+}
+
+
+
+
+
+.connect-item{
+
+display:flex;
+
+justify-content:space-between;
+
+padding:15px;
+
+background:#fff4fa;
+
+margin:10px 0;
+
+border-radius:20px;
+
+}
+
+
+
+/* SECURITY */
+
+
+.security-card{
+
+margin:20px;
+
+padding:25px;
+
+background:white;
+
+border-radius:30px;
+
+box-shadow:
+
+0 5px 15px
+rgba(0,0,0,.08);
+
+}
+
+
+
+.security-item{
+
+padding:15px;
+
+margin:10px 0;
+
+background:#fff4fa;
+
+border-radius:20px;
+
+cursor:pointer;
+
+}
+
+
+
+
+
+
+
+
+/* SETTINGS PAGE */
+
+
+.page{
+
+display:none;
+
+margin:20px;
+
+padding-bottom:100px;
+
+}
+
+
+
+
+
+.setting-group{
+
+background:white;
+
+padding:20px;
+
+margin:15px 0;
+
+border-radius:25px;
+
+box-shadow:
+
+0 5px 15px
+rgba(0,0,0,.08);
+
+}
+
+
+
+
+
+.setting-group h3{
+
+color:#ff4fa3;
+
+}
+
+
+
+
+
+
+
+/* HISTORY PAGE */
+
+
+.history-filter{
+
+display:flex;
+
+gap:10px;
+
+margin-bottom:20px;
+
+}
+
+
+
+.history-filter button{
+
+flex:1;
+
+}
+
+
+
+
+
+#fullHistory{
+
+list-style:none;
+
+padding:0;
+
+}
+
+
+
+#fullHistory li{
+
+background:white;
+
+padding:15px;
+
+margin:10px 0;
+
+border-radius:20px;
+
+}
+
+
+
+/* QR PAGE */
+
+
+.qr-box{
+
+background:white;
+
+padding:30px;
+
+border-radius:30px;
+
+text-align:center;
+
+box-shadow:
+
+0 5px 15px
+rgba(0,0,0,.08);
+
+}
+
+
+
+.qr-box img{
+
+width:250px;
+
+height:250px;
+
+border-radius:20px;
+
+}
+
+
+
+
+
+
+
+
+/* RECEIVER PAGE */
+
+
+.receiver-card div{
+
+margin-top:10px;
+
+}
+
+
+
+
+
+.receiver-item{
+
+background:#fff4fa;
+
+padding:15px;
+
+border-radius:20px;
+
+margin:10px 0;
+
+display:flex;
+
+justify-content:space-between;
+
+}
+
+
+
+
+
+
+
+
+/* KYC */
+
+
+#kycPage{
+
+text-align:center;
+
+}
+
+
+
+#kycStatus{
+
+color:#ff4fa3;
+
+font-weight:bold;
+
+}
+
+
+
+
+
+
+
+
+/* ANALYTICS */
+
+
+.analytics-box{
+
+background:white;
+
+padding:25px;
+
+margin:15px 0;
+
+border-radius:30px;
+
+box-shadow:
+
+0 5px 15px
+rgba(0,0,0,.08);
+
+text-align:center;
+
+}
+
+
+
+
+
+.analytics-box p{
+
+font-size:30px;
+
+color:#ff4fa3;
+
+font-weight:bold;
+
+}
+
+
+
+
+
+
+
+
+/* NOTIFICATION */
+
+
+#notificationList{
+
+list-style:none;
+
+padding:0;
+
+}
+
+
+
+#notificationList li{
+
+background:white;
+
+padding:15px;
+
+margin:10px 0;
+
+border-radius:20px;
+
+}
+
+
+
+/* API PAGE */
+
+
+.api-item{
+
+background:white;
+
+padding:20px;
+
+margin:15px 0;
+
+border-radius:25px;
+
+display:flex;
+
+justify-content:space-between;
+
+box-shadow:
+
+0 5px 15px
+rgba(0,0,0,.08);
+
+}
+
+
+
+
+
+
+
+
+/* BOTTOM NAVIGATION */
+
+
+.bottom-nav{
 
 position:fixed;
 
@@ -371,37 +1055,165 @@ left:0;
 
 right:0;
 
+height:80px;
+
 background:white;
 
 display:flex;
 
 justify-content:space-around;
 
-padding:15px;
+align-items:center;
 
-border-top:1px solid #ddd;
+box-shadow:
+
+0 -5px 20px
+rgba(0,0,0,.1);
+
+z-index:100;
 
 }
 
 
 
-.bottom div{
+.bottom-nav div{
 
 text-align:center;
 
-font-weight:bold;
+font-size:13px;
 
 cursor:pointer;
 
+color:#ff4fa3;
+
 }
+
+
+
+.bottom-nav div:hover{
+
+transform:scale(1.1);
+
+}
+
+
+
+
+
+
+
+
+/* MODAL */
+
+
+.modal{
+
+display:none;
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+right:0;
+
+bottom:0;
+
+background:
+
+rgba(0,0,0,.5);
+
+align-items:center;
+
+justify-content:center;
+
+z-index:200;
+
+}
+
+
+
+
+
+.modal-content{
+
+background:white;
+
+padding:30px;
+
+border-radius:30px;
+
+width:90%;
+
+max-width:400px;
+
+text-align:center;
+
+}
+
+
+
+
+
+.close{
+
+float:right;
+
+cursor:pointer;
+
+font-size:20px;
+
+}
+
+
+
+/* LOADING SCREEN */
+
+
+#loading{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+right:0;
+
+bottom:0;
+
+background:white;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+z-index:500;
+
+font-size:22px;
+
+color:#ff4fa3;
+
+font-weight:bold;
+
+}
+
+
+
+
+
+
 
 
 /* DARK MODE */
 
 
-.dark{
+body.dark{
 
-background:#222;
+background:#181818;
 
 color:white;
 
@@ -409,50 +1221,38 @@ color:white;
 
 
 
-.dark .wallet,
-.dark .mode-box,
-.dark .actions div,
-.dark .page,
-.dark .bottom{
+
+
+body.dark .summary-card,
+body.dark .chart-card,
+body.dark .transaction-card,
+body.dark .setting-group,
+body.dark .bank-card,
+body.dark .connection-card,
+body.dark .security-card,
+body.dark .receiver-card,
+body.dark .receipt-card,
+body.dark .analytics-box,
+body.dark .modal-content{
+
+background:#262626;
+
+color:white;
+
+}
+
+
+
+
+
+body.dark input,
+body.dark select{
 
 background:#333;
 
 color:white;
 
-}
-
-
-
-.dark #historyList li{
-
-background:#444;
-
-color:white;
-
-}
-
-
-
-
-
-/* REAL MODE STYLE */
-
-
-.real-mode{
-
-background:#e8f5ff;
-
-border:2px solid #2196f3;
-
-}
-
-
-
-.simulation-mode{
-
-background:#eaffea;
-
-border:2px solid #2ecc71;
+border-color:#555;
 
 }
 
@@ -461,29 +1261,28 @@ border:2px solid #2ecc71;
 
 
 
-/* MOBILE */
+
+
+/* MOBILE RESPONSIVE */
 
 
 @media(max-width:600px){
 
 
-header{
 
-padding:20px;
+.wallet-card h1{
 
-}
-
-
-
-.wallet h1{
-
-font-size:32px;
+font-size:34px;
 
 }
 
 
 
-.actions{
+.quick-actions{
+
+grid-template-columns:
+
+repeat(3,1fr);
 
 gap:10px;
 
@@ -491,46 +1290,273 @@ gap:10px;
 
 
 
-.actions div{
+.quick-actions div{
 
 padding:15px 5px;
 
-font-size:13px;
+font-size:12px;
 
 }
 
 
 
-.bottom{
+.top-header{
 
-font-size:13px;
-
-}
-
+padding:15px;
 
 }
 
 
 
+.user-profile img{
 
+width:55px;
 
-
-/* ANIMATION */
-
-
-.wallet,
-.mode-box,
-.actions div,
-.page{
-
-transition:.3s;
+height:55px;
 
 }
 
 
 
-.actions div:hover{
+.bottom-nav{
 
-transform:translateY(-5px);
+height:70px;
 
 }
+
+
+
+}
+
+
+
+/* ANIMATION SYSTEM */
+
+
+.wallet-card,
+.summary-card,
+.chart-card,
+.transaction-card,
+.bank-card,
+.connection-card,
+.security-card,
+.setting-group,
+.quick-actions div,
+.analytics-box{
+
+transition:
+
+.3s ease;
+
+}
+
+
+
+
+
+.wallet-card:hover,
+.summary-card:hover,
+.chart-card:hover,
+.transaction-card:hover,
+.bank-card:hover,
+.connection-card:hover{
+
+transform:
+
+translateY(-4px);
+
+}
+
+
+
+
+
+
+
+
+/* STATUS COLORS */
+
+
+.success{
+
+color:#2ecc71;
+
+font-weight:bold;
+
+}
+
+
+
+
+.warning{
+
+color:#f39c12;
+
+font-weight:bold;
+
+}
+
+
+
+
+.error{
+
+color:#e74c3c;
+
+font-weight:bold;
+
+}
+
+
+
+
+
+
+
+
+/* BUTTON EFFECT */
+
+
+button{
+
+transition:.2s;
+
+}
+
+
+
+button:hover{
+
+opacity:.85;
+
+transform:
+
+scale(1.03);
+
+}
+
+
+
+
+
+
+
+
+/* CARD TITLE */
+
+
+section h3{
+
+margin-top:0;
+
+}
+
+
+
+
+
+section p{
+
+line-height:1.5;
+
+}
+
+
+
+/* FINAL POLISH */
+
+
+::-webkit-scrollbar{
+
+width:8px;
+
+}
+
+
+
+::-webkit-scrollbar-track{
+
+background:#ffe6f2;
+
+}
+
+
+
+::-webkit-scrollbar-thumb{
+
+background:#ff4fa3;
+
+border-radius:20px;
+
+}
+
+
+
+
+
+.text-center{
+
+text-align:center;
+
+}
+
+
+
+
+
+.hidden{
+
+display:none;
+
+}
+
+
+
+
+
+.flex{
+
+display:flex;
+
+align-items:center;
+
+}
+
+
+
+
+
+.space-between{
+
+justify-content:space-between;
+
+}
+
+
+
+
+
+.round{
+
+border-radius:50%;
+
+}
+
+
+
+
+
+.shadow{
+
+box-shadow:
+
+0 10px 25px
+rgba(0,0,0,.1);
+
+}
+
+
+
+
+
+/* END PINK WALLET v6.0 */
