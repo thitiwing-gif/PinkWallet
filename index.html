@@ -3,11 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pink Wallet</title>
+<title>Pink Wallet v0.7</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
+
 
 <div id="loginPage">
 
@@ -15,31 +18,47 @@
 
 <input id="loginName" placeholder="ชื่อผู้ใช้">
 
-<input id="loginPin"
+<input 
+id="loginPin"
 placeholder="PIN 4 หลัก"
 type="password"
 maxlength="4">
+
 
 <button onclick="login()">
 เข้าสู่ Wallet
 </button>
 
+
 </div>
+
 
 
 <div id="app">
 
+
+
 <div class="header">
+
 
 <div class="profile">
 
+
 <div class="avatar">
 
-<img id="profileImage" src="https://via.placeholder.com/80">
 
-<input type="file" id="imageUpload" accept="image/*">
+<img id="profileImage"
+src="https://via.placeholder.com/80">
+
+
+<input 
+type="file"
+id="imageUpload"
+accept="image/*">
+
 
 </div>
+
 
 
 <div>
@@ -48,39 +67,68 @@ maxlength="4">
 
 <p>สวัสดี, ผู้ใช้</p>
 
-</div>
 
 </div>
 
-<p class="mode">🟢 โหมดจำลอง</p>
 
 </div>
+
+
+
+<p class="mode">
+🟢 โหมดจำลอง
+</p>
+
+
+</div>
+
+
 
 
 <div class="card">
 
+
 <div class="bank-header">
+
 
 <h3>💳 Pink Wallet</h3>
 
-<span class="badge">SIMULATION</span>
+
+<span class="badge">
+SIMULATION
+</span>
+
 
 </div>
 
 
-<p class="title">ยอดเงินคงเหลือ</p>
+
+<p class="title">
+ยอดเงินคงเหลือ
+</p>
+
+
 
 <div class="balance" id="balance">
+
 ฿10,000.00
+
 </div>
 
 
-<button class="eye-btn" onclick="toggleBalance()">
+
+<button 
+class="eye-btn"
+onclick="toggleBalance()">
+
 👁 ซ่อน/แสดงยอดเงิน
+
 </button>
 
 
+
 <hr>
+
 
 <p>🏦 Pink Bank</p>
 
@@ -88,34 +136,56 @@ maxlength="4">
 
 <p>💚 081-234-5678</p>
 
+
+
 </div>
+
+
 
 
 
 <div class="profile-card">
 
+
 <div class="avatar">
 
-<img id="profileImageCard" src="https://via.placeholder.com/80">
+
+<img id="profileImageCard"
+src="https://via.placeholder.com/80">
+
 
 </div>
+
 
 
 <div class="profile-info">
 
-<h3 id="username">Pink User</h3>
+
+<h3 id="username">
+Pink User
+</h3>
+
+
 
 <button onclick="changeName()">
+
 เปลี่ยนชื่อ
+
 </button>
 
-</div>
+
 
 </div>
+
+
+</div>
+
+
 
 
 
 <div class="menu">
+
 
 <div class="menu-item" onclick="deposit()">
 
@@ -124,6 +194,7 @@ maxlength="4">
 <p>ฝาก</p>
 
 </div>
+
 
 
 <div class="menu-item" onclick="withdraw()">
@@ -135,6 +206,7 @@ maxlength="4">
 </div>
 
 
+
 <div class="menu-item" onclick="transfer()">
 
 <div class="icon">↗️</div>
@@ -142,6 +214,7 @@ maxlength="4">
 <p>โอน</p>
 
 </div>
+
 
 
 <div class="menu-item" onclick="receive()">
@@ -153,6 +226,7 @@ maxlength="4">
 </div>
 
 
+
 <div class="menu-item">
 
 <div class="icon">📱</div>
@@ -162,6 +236,7 @@ maxlength="4">
 </div>
 
 
+
 <div class="menu-item" onclick="showQR()">
 
 <div class="icon">📷</div>
@@ -169,6 +244,8 @@ maxlength="4">
 <p>QR</p>
 
 </div>
+
+
 
 </div>
 <div class="history">
@@ -180,6 +257,7 @@ maxlength="4">
 </div>
 
 
+
 <div class="chart-card">
 
 <h3>📊 สรุปรายรับ - รายจ่าย</h3>
@@ -187,6 +265,7 @@ maxlength="4">
 <canvas id="moneyChart"></canvas>
 
 </div>
+
 
 
 
@@ -200,9 +279,12 @@ maxlength="4">
 
 
 
+
 <div id="settingsPage" class="page">
 
+
 <h2>⚙️ ตั้งค่า</h2>
+
 
 
 <div class="setting-item" onclick="toggleTheme()">
@@ -212,6 +294,7 @@ maxlength="4">
 </div>
 
 
+
 <div class="setting-item" onclick="clearData()">
 
 🗑 ล้างข้อมูลทั้งหมด
@@ -219,36 +302,53 @@ maxlength="4">
 </div>
 
 
+
 <div class="setting-item">
 
-💗 Pink Wallet v0.6
+💗 Pink Wallet v0.7
 
 </div>
 
 
+
 </div>
+
+
+
 
 
 
 <div id="qrPage" class="page">
 
+
 <h2>📷 รับเงินด้วย QR</h2>
+
 
 
 <div class="qr-box">
 
 
 <img id="qrImage"
+
 src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=PinkWallet">
 
 
 </div>
 
 
-<h3>Pink User</h3>
+
+<h3 id="qrName">
+
+Pink User
+
+</h3>
 
 
-<p>บัญชี: 123-4-56789-0</p>
+
+<p>
+บัญชี: 123-4-56789-0
+</p>
+
 
 
 <button onclick="copyAccount()">
@@ -258,7 +358,10 @@ src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=PinkWallet">
 </button>
 
 
+
 </div>
+
+
 
 
 
@@ -266,48 +369,62 @@ src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=PinkWallet">
 <div class="bottom">
 
 
+
 <div onclick="showHome()">
 
 🏠<br>
+
 Home
 
 </div>
 
 
+
 <div onclick="showHistory()">
 
 📋<br>
+
 รายการ
 
 </div>
 
 
+
 <div onclick="showQR()">
 
 📷<br>
+
 QR
 
 </div>
 
 
+
 <div onclick="showSettings()">
 
 ⚙️<br>
+
 ตั้งค่า
 
 </div>
 
 
+
 </div>
 
 
+
+
 </div>
+
+
 
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script src="script.js"></script>
+
 
 
 </body>
