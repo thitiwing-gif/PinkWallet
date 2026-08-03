@@ -1,157 +1,474 @@
-// โหลดข้อมูลจาก Local Storage
+// Pink Wallet v0.7
+
 let balance = Number(localStorage.getItem("balance")) || 10000;
 
-let history = JSON.parse(localStorage.getItem("history")) || [
-    "💰 เริ่มต้นระบบ ฿10,000"
+let history = JSON.parse(
+localStorage.getItem("history")
+) || [
+"💰 เริ่มต้นระบบ ฿10,000"
 ];
+
+
+let username =
+localStorage.getItem("username") || "Pink User";
+
 
 let hideBalance = false;
 
+
+
 function saveData(){
-    localStorage.setItem("balance", balance);
-    localStorage.setItem("history", JSON.stringify(history));
+
+localStorage.setItem(
+"balance",
+balance
+);
+
+
+localStorage.setItem(
+"history",
+JSON.stringify(history)
+);
+
+
+localStorage.setItem(
+"username",
+username
+);
+
 }
+
+
+
+
 
 function updateUI(){
 
-    document.getElementById("balance").innerHTML =
-        hideBalance ? "฿••••••" : "฿" + balance.toLocaleString("th-TH") + ".00";
 
-    const list = document.getElementById("historyList");
+let balanceBox =
+document.getElementById("balance");
 
-    list.innerHTML="";
 
-    history.slice().reverse().forEach(item=>{
+if(balanceBox){
 
-        list.innerHTML += `<li>${item}</li>`;
-
-    });
-
-    saveData();
+balanceBox.innerHTML =
+hideBalance
+?
+"฿••••••"
+:
+"฿" + balance.toLocaleString("th-TH") + ".00";
 
 }
+
+
+
+let nameBox =
+document.getElementById("username");
+
+
+if(nameBox){
+
+nameBox.innerHTML = username;
+
+}
+
+
+
+let list =
+document.getElementById("historyList");
+
+
+if(list){
+
+list.innerHTML="";
+
+
+history.slice().reverse().forEach(item=>{
+
+
+list.innerHTML +=
+`<li>${item}</li>`;
+
+
+});
+
+
+}
+
+
+saveData();
+
+
+}
+
+
+
+
+
+
+
+function login(){
+
+
+let name =
+document.getElementById("loginName").value;
+
+
+let pin =
+document.getElementById("loginPin").value;
+
+
+
+if(name=="" || pin.length!=4){
+
+
+alert("กรุณาใส่ชื่อและ PIN 4 หลัก");
+
+
+return;
+
+
+}
+
+
+
+username=name;
+
+
+localStorage.setItem(
+"login",
+"true"
+);
+
+
+
+document.getElementById(
+"loginPage"
+).style.display="none";
+
+
+document.getElementById(
+"app"
+).style.display="block";
+
+
+updateUI();
+
+
+}
+
+
+
+
+
 
 function toggleBalance(){
 
-    hideBalance=!hideBalance;
 
-    updateUI();
+hideBalance=!hideBalance;
+
+
+updateUI();
+
 
 }
+
+
+
+
+
+
 
 function deposit(){
 
-    balance+=100;
 
-    history.push("➕ ฝาก +100 บาท");
+balance +=100;
 
-    updateUI();
+
+history.push(
+"➕ ฝาก +100 บาท"
+);
+
+
+updateUI();
+
 
 }
+
+
+
+
+
+
 
 function withdraw(){
 
-    balance-=100;
 
-    history.push("➖ ถอน -100 บาท");
+if(balance<100){
 
-    updateUI();
+alert("ยอดเงินไม่พอ");
+
+return;
 
 }
+
+
+balance -=100;
+
+
+history.push(
+"➖ ถอน -100 บาท"
+);
+
+
+updateUI();
+
+
+}
+
+
+
+
+
 
 function transfer(){
 
-    balance-=50;
 
-    history.push("↗️ โอน -50 บาท");
+if(balance<50){
 
-    updateUI();
+alert("ยอดเงินไม่พอ");
+
+return;
 
 }
+
+
+balance-=50;
+
+
+history.push(
+"↗️ โอน -50 บาท"
+);
+
+
+updateUI();
+
+
+}
+
+
+
+
+
 
 function receive(){
 
-    balance+=50;
 
-    history.push("📥 รับ +50 บาท");
+balance+=50;
 
-    updateUI();
+
+history.push(
+"📥 รับ +50 บาท"
+);
+
+
+updateUI();
+
 
 }
 
-document.addEventListener("DOMContentLoaded", updateUI);
+// เปลี่ยนชื่อผู้ใช้
+
 function changeName(){
 
-let name = prompt("ใส่ชื่อใหม่");
+let name = prompt(
+"ใส่ชื่อใหม่",
+username
+);
+
 
 if(name){
-document.getElementById("username").innerHTML = name;
 
-localStorage.setItem("username", name);
+username=name;
 
-}
-
-}
-
-
-window.onload=function(){
-
-let savedName = localStorage.getItem("username");
-
-if(savedName){
-
-document.getElementById("username").innerHTML = savedName;
+updateUI();
 
 }
 
 }
-const imageUpload = document.getElementById("imageUpload");
 
-if(imageUpload){
 
-imageUpload.addEventListener("change",function(){
 
-const file = this.files[0];
+
+
+// อัปโหลดรูปโปรไฟล์
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+
+let upload =
+document.getElementById(
+"imageUpload"
+);
+
+
+
+if(upload){
+
+
+upload.addEventListener(
+"change",
+function(){
+
+
+let file=this.files[0];
+
 
 if(file){
 
-const reader = new FileReader();
+
+let reader =
+new FileReader();
+
+
 
 reader.onload=function(e){
 
-document.getElementById("profileImage").src = e.target.result;
 
-localStorage.setItem("profileImage", e.target.result);
+let img =
+e.target.result;
+
+
+let profile =
+document.getElementById(
+"profileImage"
+);
+
+
+let card =
+document.getElementById(
+"profileImageCard"
+);
+
+
+
+if(profile){
+
+profile.src=img;
 
 }
+
+
+
+if(card){
+
+card.src=img;
+
+}
+
+
+
+localStorage.setItem(
+"profileImage",
+img
+);
+
+
+
+};
+
+
 
 reader.readAsDataURL(file);
 
+
 }
+
 
 });
 
+
 }
 
 
-window.addEventListener("load",function(){
 
-const savedImage = localStorage.getItem("profileImage");
+let savedImage =
+localStorage.getItem(
+"profileImage"
+);
+
+
 
 if(savedImage){
 
-document.getElementById("profileImage").src = savedImage;
+
+let profile =
+document.getElementById(
+"profileImage"
+);
+
+
+
+let card =
+document.getElementById(
+"profileImageCard"
+);
+
+
+
+if(profile){
+
+profile.src=savedImage;
 
 }
 
+
+
+if(card){
+
+card.src=savedImage;
+
+}
+
+
+}
+
+
+updateUI();
+
+
 });
-const ctx = document.getElementById('moneyChart');
 
-if(ctx){
 
-new Chart(ctx, {
 
-type:'doughnut',
+
+
+
+
+// กราฟ
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+
+let ctx =
+document.getElementById(
+"moneyChart"
+);
+
+
+
+if(ctx && typeof Chart !== "undefined"){
+
+
+new Chart(
+ctx,
+{
+
+type:"doughnut",
 
 data:{
 
@@ -171,117 +488,323 @@ data:[
 
 },
 
+
 options:{
 
 responsive:true
 
 }
 
-});
 
 }
-function saveTransaction(text){
 
-let data = JSON.parse(localStorage.getItem("history")) || [];
-
-data.push(text);
-
-localStorage.setItem(
-"history",
-JSON.stringify(data)
 );
 
+
 }
 
-
-function showHistory(){
-
-document.querySelector(".card").style.display="none";
-document.querySelector(".menu").style.display="none";
-document.querySelector(".chart-card").style.display="none";
-
-document.getElementById("historyPage").style.display="block";
-
-
-let data = JSON.parse(localStorage.getItem("history")) || [];
-
-let list = document.getElementById("fullHistory");
-
-list.innerHTML="";
-
-
-data.forEach(item=>{
-
-let li=document.createElement("li");
-
-li.innerHTML=item;
-
-list.appendChild(li);
 
 });
 
+
+
+
+
+
+
+
+// หน้าเมนู
+
+
+function hideAll(){
+
+
+let pages=[
+
+".card",
+".menu",
+".chart-card",
+".history",
+"#historyPage",
+"#qrPage",
+"#settingsPage"
+
+];
+
+
+
+pages.forEach(function(p){
+
+
+let el=document.querySelector(p);
+
+
+if(el){
+
+el.style.display="none";
+
 }
+
+
+});
+
+
+}
+
+
+
 
 
 function showHome(){
 
-location.reload();
+
+hideAll();
+
+
+document.querySelector(".card").style.display="block";
+
+document.querySelector(".menu").style.display="grid";
+
+document.querySelector(".chart-card").style.display="block";
+
+document.querySelector(".history").style.display="block";
+
 
 }
+
+
+
+
+
+
+function showHistory(){
+
+
+hideAll();
+
+
+let page =
+document.getElementById(
+"historyPage"
+);
+
+
+if(page){
+
+page.style.display="block";
+
+
+let list =
+document.getElementById(
+"fullHistory"
+);
+
+
+list.innerHTML="";
+
+
+history.forEach(function(item){
+
+
+list.innerHTML +=
+`<li>${item}</li>`;
+
+
+});
+
+
+}
+
+
+}
+
+
+
+
+
+
 function showQR(){
 
-document.querySelector(".card").style.display="none";
-document.querySelector(".menu").style.display="none";
-document.querySelector(".chart-card").style.display="none";
-document.querySelector(".history").style.display="none";
 
-document.getElementById("qrPage").style.display="block";
+hideAll();
+
+
+let page =
+document.getElementById(
+"qrPage"
+);
+
+
+
+if(page){
+
+page.style.display="block";
 
 }
+
+
+}
+
+
+
+
+
+
+
+function showSettings(){
+
+
+hideAll();
+
+
+let page =
+document.getElementById(
+"settingsPage"
+);
+
+
+
+if(page){
+
+page.style.display="block";
+
+}
+
+
+}
+
+
+
+
+
+
 
 
 function copyAccount(){
+
 
 navigator.clipboard.writeText(
 "123-4-56789-0"
 );
 
-alert("คัดลอกเลขบัญชีแล้ว");
+
+alert(
+"คัดลอกเลขบัญชีแล้ว"
+);
+
 
 }
-function showSettings(){
 
-document.querySelector(".card").style.display="none";
-document.querySelector(".menu").style.display="none";
-document.querySelector(".chart-card").style.display="none";
-document.querySelector(".history").style.display="none";
 
-document.getElementById("settingsPage").style.display="block";
 
-}
+
+
+
 
 
 function toggleTheme(){
 
-document.body.classList.toggle("dark");
+
+document.body.classList.toggle(
+"dark"
+);
+
 
 }
+
+
+
+
+
+
 
 
 function clearData(){
 
-let confirmDelete = confirm(
+
+let confirmDelete =
+confirm(
 "ต้องการล้างข้อมูลทั้งหมดหรือไม่?"
 );
 
+
+
 if(confirmDelete){
+
 
 localStorage.clear();
 
-alert("ล้างข้อมูลแล้ว");
+
+alert(
+"ล้างข้อมูลแล้ว"
+);
+
+
 
 location.reload();
 
-}
 
 }
+
+
+}
+
+
+
+
+
+
+
+// เปิดแอปอัตโนมัติถ้าเคย Login
+
+window.addEventListener(
+"load",
+function(){
+
+
+let login =
+localStorage.getItem(
+"login"
+);
+
+
+
+if(login==="true"){
+
+
+let lp =
+document.getElementById(
+"loginPage"
+);
+
+
+let app =
+document.getElementById(
+"app"
+);
+
+
+
+if(lp){
+
+lp.style.display="none";
+
+}
+
+
+
+if(app){
+
+app.style.display="block";
+
+}
+
+
+}
+
+
+
+updateUI();
+
+
+});
