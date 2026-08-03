@@ -1,3 +1,4 @@
+
 *{
 box-sizing:border-box;
 }
@@ -11,7 +12,7 @@ background:#f7f7fb;
 
 font-family:Arial,sans-serif;
 
-padding-bottom:80px;
+padding-bottom:90px;
 
 }
 
@@ -63,8 +64,6 @@ border-radius:25px;
 
 font-size:16px;
 
-outline:none;
-
 }
 
 
@@ -77,18 +76,13 @@ color:#ff5aa5;
 
 border:none;
 
-padding:15px 45px;
+padding:15px 40px;
 
 border-radius:25px;
 
-font-size:16px;
-
 font-weight:bold;
 
-cursor:pointer;
-
 }
-
 
 
 
@@ -117,6 +111,8 @@ border-bottom-left-radius:30px;
 
 border-bottom-right-radius:30px;
 
+position:relative;
+
 }
 
 
@@ -133,6 +129,7 @@ gap:15px;
 
 
 
+
 .avatar{
 
 width:80px;
@@ -145,13 +142,11 @@ background:white;
 
 display:flex;
 
-align-items:center;
-
 justify-content:center;
 
-position:relative;
+align-items:center;
 
-overflow:visible;
+position:relative;
 
 }
 
@@ -185,13 +180,68 @@ font-size:10px;
 
 
 
-.mode{
 
-margin-top:15px;
 
-font-size:14px;
+.notification{
+
+position:absolute;
+
+right:25px;
+
+top:35px;
+
+background:white;
+
+color:#ff5aa5;
+
+width:45px;
+
+height:45px;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:25px;
+
+cursor:pointer;
 
 }
+
+
+
+.notification span{
+
+position:absolute;
+
+right:-5px;
+
+top:-5px;
+
+background:red;
+
+color:white;
+
+font-size:12px;
+
+width:20px;
+
+height:20px;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+}
+
 
 
 
@@ -211,6 +261,16 @@ box-shadow:0 10px 25px rgba(0,0,0,.08);
 }
 
 
+
+.balance{
+
+font-size:38px;
+
+font-weight:bold;
+
+color:#ff3d92;
+
+}
 
 
 .bank-header{
@@ -237,28 +297,6 @@ border-radius:20px;
 
 font-size:12px;
 
-font-weight:bold;
-
-}
-
-
-
-.title{
-
-color:#777;
-
-}
-
-
-
-.balance{
-
-font-size:38px;
-
-font-weight:bold;
-
-color:#ff3d92;
-
 }
 
 
@@ -266,11 +304,9 @@ color:#ff3d92;
 
 .eye-btn{
 
-margin-top:15px;
-
 width:100%;
 
-background:#ff4fa3;
+background:#ff5aa5;
 
 color:white;
 
@@ -282,17 +318,6 @@ border-radius:20px;
 
 }
 
-
-
-.card hr{
-
-border:none;
-
-border-top:1px solid #eee;
-
-margin:20px 0;
-
-}
 
 
 
@@ -329,15 +354,19 @@ margin-left:15px;
 
 background:#ff5aa5;
 
-border:none;
-
 color:white;
+
+border:none;
 
 padding:8px 15px;
 
 border-radius:20px;
 
 }
+
+
+
+
 
 .menu{
 
@@ -365,18 +394,6 @@ text-align:center;
 
 box-shadow:0 6px 18px rgba(0,0,0,.08);
 
-cursor:pointer;
-
-transition:.2s;
-
-}
-
-
-
-.menu-item:hover{
-
-transform:translateY(-4px);
-
 }
 
 
@@ -403,42 +420,13 @@ justify-content:center;
 
 font-size:28px;
 
-margin-bottom:10px;
-
 }
 
 
 
-.menu-item p{
-
-margin:0;
-
-font-weight:bold;
-
-color:#444;
-
-}
-
-
-
-
-
-.history{
-
-background:white;
-
-margin:20px;
-
-padding:20px;
-
-border-radius:20px;
-
-}
-
-
-
-
-.chart-card{
+.history,
+.chart-card,
+.page{
 
 background:white;
 
@@ -451,15 +439,6 @@ border-radius:20px;
 box-shadow:0 6px 18px rgba(0,0,0,.08);
 
 }
-
-
-
-.chart-card h3{
-
-text-align:center;
-
-}
-
 
 
 
@@ -467,30 +446,19 @@ text-align:center;
 
 display:none;
 
-background:white;
-
-margin:20px;
-
-padding:20px;
-
-border-radius:20px;
-
-box-shadow:0 6px 18px rgba(0,0,0,.08);
-
 }
-
 
 
 
 .qr-box{
 
+text-align:center;
+
 background:white;
 
 padding:20px;
 
 border-radius:20px;
-
-text-align:center;
 
 }
 
@@ -506,23 +474,6 @@ height:200px;
 
 
 
-.qr-box button{
-
-background:#ff5aa5;
-
-color:white;
-
-border:none;
-
-padding:12px 20px;
-
-border-radius:20px;
-
-}
-
-
-
-
 .setting-item{
 
 background:white;
@@ -535,11 +486,10 @@ border-radius:15px;
 
 box-shadow:0 5px 15px rgba(0,0,0,.08);
 
-cursor:pointer;
-
 font-weight:bold;
 
 }
+
 
 
 
@@ -564,9 +514,10 @@ padding:15px;
 
 border-top:1px solid #ddd;
 
-z-index:10;
+z-index:20;
 
 }
+
 
 
 
@@ -584,10 +535,10 @@ color:white;
 .dark .card,
 .dark .menu-item,
 .dark .profile-card,
-.dark .chart-card,
 .dark .history,
-.dark .setting-item,
-.dark .page{
+.dark .chart-card,
+.dark .page,
+.dark .setting-item{
 
 background:#333;
 
@@ -597,8 +548,20 @@ color:white;
 
 
 
-@media(max-width:600px){
 
+
+.menu-item:hover{
+
+transform:translateY(-5px);
+
+transition:.2s;
+
+}
+
+
+
+
+@media(max-width:600px){
 
 .balance{
 
