@@ -1,6 +1,8 @@
+
 *{
 box-sizing:border-box;
 }
+
 
 body{
 
@@ -92,6 +94,7 @@ display:none;
 
 
 
+
 /* Header */
 
 .header{
@@ -99,16 +102,16 @@ display:none;
 background:linear-gradient(
 135deg,
 #ff5aa5,
-#ff7fc3
+#ff8ac8
 );
-
-color:white;
 
 padding:30px 20px;
 
-border-bottom-left-radius:30px;
+color:white;
 
-border-bottom-right-radius:30px;
+border-bottom-left-radius:35px;
+
+border-bottom-right-radius:35px;
 
 display:flex;
 
@@ -117,6 +120,7 @@ justify-content:space-between;
 align-items:center;
 
 }
+
 
 
 
@@ -132,6 +136,7 @@ gap:15px;
 
 
 
+
 .avatar{
 
 width:80px;
@@ -140,11 +145,12 @@ height:80px;
 
 border-radius:50%;
 
-background:white;
-
 overflow:hidden;
 
+background:white;
+
 }
+
 
 
 
@@ -160,9 +166,11 @@ object-fit:cover;
 
 
 
+
+
 .notification{
 
-font-size:28px;
+font-size:30px;
 
 position:relative;
 
@@ -176,9 +184,9 @@ cursor:pointer;
 
 position:absolute;
 
-top:-10px;
-
 right:-10px;
+
+top:-10px;
 
 background:red;
 
@@ -186,56 +194,42 @@ color:white;
 
 font-size:12px;
 
-border-radius:50%;
-
 padding:5px;
+
+border-radius:50%;
 
 }
 
 
 
-/* Card */
 
 
-.card{
+
+
+/* Wallet Card */
+
+
+.wallet-card{
 
 background:white;
 
 margin:20px;
 
-padding:20px;
+padding:25px;
 
-border-radius:20px;
+border-radius:25px;
 
-box-shadow:0 10px 25px rgba(0,0,0,.08);
+box-shadow:0 10px 25px rgba(0,0,0,.1);
 
 }
 
 
 
-.bank-header{
+.card-top{
 
 display:flex;
 
 justify-content:space-between;
-
-align-items:center;
-
-}
-
-
-
-.badge{
-
-background:#2ecc71;
-
-color:white;
-
-padding:6px 12px;
-
-border-radius:20px;
-
-font-size:12px;
 
 }
 
@@ -243,32 +237,73 @@ font-size:12px;
 
 .balance{
 
-font-size:38px;
+font-size:40px;
 
 font-weight:bold;
 
 color:#ff3d92;
 
+margin:20px 0;
+
 }
 
 
-.card button{
+
+.wallet-card button{
 
 width:100%;
-
-padding:12px;
-
-border:none;
-
-border-radius:20px;
 
 background:#ff5aa5;
 
 color:white;
 
+border:none;
+
+padding:12px;
+
+border-radius:25px;
+
 }
 
+.profile-box{
+
+background:white;
+
+margin:20px;
+
+padding:18px;
+
+border-radius:20px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+box-shadow:0 6px 18px rgba(0,0,0,.08);
+
+}
+
+
+.profile-box button{
+
+background:#ff5aa5;
+
+color:white;
+
+border:none;
+
+padding:10px 18px;
+
+border-radius:20px;
+
+}
+
+
+
 /* Menu */
+
 
 .menu{
 
@@ -290,15 +325,23 @@ background:white;
 
 padding:18px;
 
-border-radius:18px;
+border-radius:20px;
 
 text-align:center;
+
+font-weight:bold;
 
 box-shadow:0 6px 18px rgba(0,0,0,.08);
 
 cursor:pointer;
 
-font-weight:bold;
+}
+
+
+
+.menu-item:hover{
+
+transform:translateY(-3px);
 
 }
 
@@ -312,30 +355,30 @@ height:55px;
 
 margin:auto;
 
-border-radius:50%;
+margin-bottom:10px;
 
 background:#ff5aa5;
 
 color:white;
 
-display:flex;
+border-radius:50%;
 
-justify-content:center;
+display:flex;
 
 align-items:center;
 
-font-size:28px;
+justify-content:center;
 
-margin-bottom:8px;
+font-size:28px;
 
 }
 
 
 
-/* History */
+/* Chart */
 
 
-.history{
+.chart-card{
 
 background:white;
 
@@ -351,15 +394,7 @@ box-shadow:0 6px 18px rgba(0,0,0,.08);
 
 
 
-.history ul{
-
-padding-left:20px;
-
-}
-
-
-
-/* Pages */
+/* Page */
 
 
 .page{
@@ -374,15 +409,20 @@ padding:20px;
 
 border-radius:20px;
 
-box-shadow:0 6px 18px rgba(0,0,0,.08);
-
 }
+
 
 
 
 .qr-box{
 
 text-align:center;
+
+background:#fff;
+
+padding:20px;
+
+border-radius:20px;
 
 }
 
@@ -398,15 +438,16 @@ height:200px;
 
 
 
+
 .setting-item{
 
 background:white;
 
 padding:18px;
 
-margin:10px 0;
+margin:12px 0;
 
-border-radius:15px;
+border-radius:18px;
 
 box-shadow:0 5px 15px rgba(0,0,0,.08);
 
@@ -415,6 +456,8 @@ font-weight:bold;
 cursor:pointer;
 
 }
+
+
 
 
 
@@ -448,8 +491,6 @@ z-index:10;
 
 
 
-/* Dark Mode */
-
 
 .dark{
 
@@ -460,39 +501,15 @@ color:white;
 }
 
 
-
-.dark .card,
-.dark .history,
+.dark .wallet-card,
+.dark .profile-box,
 .dark .menu-item,
+.dark .chart-card,
 .dark .page,
 .dark .setting-item{
 
 background:#333;
 
 color:white;
-
-}
-
-
-
-/* Mobile */
-
-
-@media(max-width:600px){
-
-
-.balance{
-
-font-size:32px;
-
-}
-
-
-.menu{
-
-grid-template-columns:repeat(3,1fr);
-
-}
-
 
 }
