@@ -206,3 +206,18 @@ width:90px;
 font-size:10px;
 margin-top:5px;
 }
+.chart-card{
+
+background:white;
+margin:20px;
+padding:20px;
+border-radius:20px;
+box-shadow:0 6px 18px rgba(0,0,0,.08);
+
+}
+
+.chart-card h3{
+
+text-align:center;
+
+}
