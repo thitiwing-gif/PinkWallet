@@ -1,8 +1,12 @@
 
 *{
+
 box-sizing:border-box;
+
 font-family:Arial,sans-serif;
+
 }
+
 
 
 body{
@@ -21,7 +25,8 @@ padding-bottom:90px;
 
 /* LOGIN */
 
-.login-page{
+
+#loginPage{
 
 height:100vh;
 
@@ -37,7 +42,7 @@ gap:15px;
 
 background:linear-gradient(
 135deg,
-#ff5aa5,
+#ff4fa3,
 #ffb6d9
 );
 
@@ -45,7 +50,7 @@ background:linear-gradient(
 
 
 
-.login-page h1{
+#loginPage h1{
 
 color:white;
 
@@ -55,7 +60,7 @@ font-size:40px;
 
 
 
-.login-page input{
+#loginPage input{
 
 width:280px;
 
@@ -75,34 +80,22 @@ button{
 
 border:none;
 
+padding:12px 25px;
+
+border-radius:25px;
+
+background:#ff4fa3;
+
+color:white;
+
+font-weight:bold;
+
 cursor:pointer;
 
 }
 
 
 
-.login-page button{
-
-padding:15px 40px;
-
-border-radius:25px;
-
-background:white;
-
-color:#ff5aa5;
-
-font-weight:bold;
-
-font-size:16px;
-
-}
-
-
-
-
-
-
-/* APP */
 
 
 #app{
@@ -115,31 +108,28 @@ display:none;
 
 
 
-
 /* HEADER */
 
 
-.header{
+header{
 
 background:linear-gradient(
 135deg,
-#ff5aa5,
+#ff4fa3,
 #ff8ac8
 );
 
-padding:25px 20px;
+color:white;
 
-border-bottom-left-radius:35px;
+padding:25px;
 
-border-bottom-right-radius:35px;
+border-radius:0 0 35px 35px;
 
 display:flex;
 
 justify-content:space-between;
 
 align-items:center;
-
-color:white;
 
 }
 
@@ -157,7 +147,7 @@ gap:15px;
 
 
 
-.avatar{
+.profile img{
 
 width:80px;
 
@@ -165,7 +155,7 @@ height:80px;
 
 border-radius:50%;
 
-overflow:hidden;
+object-fit:cover;
 
 background:white;
 
@@ -173,58 +163,13 @@ background:white;
 
 
 
-.avatar img{
-
-width:100%;
-
-height:100%;
-
-object-fit:cover;
-
-}
 
 
 
-.notification{
-
-font-size:30px;
-
-cursor:pointer;
-
-position:relative;
-
-}
+/* WALLET */
 
 
-
-.notification span{
-
-background:red;
-
-color:white;
-
-font-size:12px;
-
-padding:5px;
-
-border-radius:50%;
-
-position:absolute;
-
-top:-10px;
-
-right:-10px;
-
-}
-
-
-
-
-
-/* WALLET CARD */
-
-
-.wallet-card{
+.wallet{
 
 background:white;
 
@@ -240,65 +185,19 @@ box-shadow:0 10px 25px rgba(0,0,0,.1);
 
 
 
-.wallet-title{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-}
-
-
-
-.wallet-title span{
-
-background:#2ecc71;
-
-color:white;
-
-padding:5px 12px;
-
-border-radius:20px;
-
-font-size:12px;
-
-}
-
-
-
-.wallet-card h1{
+.wallet h1{
 
 font-size:40px;
 
-color:#ff3d92;
+color:#ff4fa3;
 
 }
 
 
-
-.wallet-card button{
-
-width:100%;
-
-background:#ff5aa5;
-
-color:white;
-
-padding:12px;
-
-border-radius:25px;
-
-font-weight:bold;
-
-}
+/* MODE BOX */
 
 
-/* PROFILE BOX */
-
-
-.box{
+.mode-box{
 
 background:white;
 
@@ -314,27 +213,19 @@ box-shadow:0 6px 18px rgba(0,0,0,.08);
 
 
 
-.profile-control{
+.mode-box button{
 
-display:flex;
-
-gap:10px;
-
-align-items:center;
+margin:5px;
 
 }
 
 
 
-.profile-control button{
+#modeStatus{
 
-background:#ff5aa5;
+font-weight:bold;
 
-color:white;
-
-padding:10px 20px;
-
-border-radius:20px;
+color:#ff4fa3;
 
 }
 
@@ -342,10 +233,10 @@ border-radius:20px;
 
 
 
-/* MENU */
+/* ACTION MENU */
 
 
-.menu{
+.actions{
 
 display:grid;
 
@@ -359,63 +250,19 @@ margin:20px;
 
 
 
-.menu-item{
+.actions div{
 
 background:white;
 
-padding:18px 10px;
-
-border-radius:20px;
+padding:20px 10px;
 
 text-align:center;
 
+border-radius:20px;
+
 box-shadow:0 6px 18px rgba(0,0,0,.08);
 
-transition:.2s;
-
 cursor:pointer;
-
-}
-
-
-
-.menu-item:hover{
-
-transform:translateY(-4px);
-
-}
-
-
-
-.icon{
-
-width:55px;
-
-height:55px;
-
-margin:auto;
-
-background:#ff5aa5;
-
-color:white;
-
-border-radius:50%;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-font-size:28px;
-
-}
-
-
-
-.menu-item p{
-
-margin-top:10px;
 
 font-weight:bold;
 
@@ -446,17 +293,17 @@ box-shadow:0 6px 18px rgba(0,0,0,.08);
 
 
 
-.page button{
+.page input{
 
-background:#ff5aa5;
+width:100%;
 
-color:white;
+padding:14px;
 
-padding:12px 20px;
+margin:8px 0;
+
+border:1px solid #ddd;
 
 border-radius:20px;
-
-margin-top:15px;
 
 }
 
@@ -466,21 +313,11 @@ margin-top:15px;
 /* QR */
 
 
-.qr-box{
+#qrPage img{
 
-background:white;
+display:block;
 
-padding:20px;
-
-text-align:center;
-
-border-radius:20px;
-
-}
-
-
-
-.qr-box img{
+margin:20px auto;
 
 width:200px;
 
@@ -492,24 +329,28 @@ height:200px;
 
 
 
-/* SETTINGS */
+/* HISTORY */
 
 
-.setting-item{
+#historyList{
 
-background:white;
+padding:0;
 
-padding:18px;
+list-style:none;
 
-margin:12px 0;
+}
 
-border-radius:18px;
 
-box-shadow:0 5px 15px rgba(0,0,0,.08);
 
-font-weight:bold;
+#historyList li{
 
-cursor:pointer;
+background:#f5f5f5;
+
+margin:10px 0;
+
+padding:15px;
+
+border-radius:15px;
 
 }
 
@@ -517,7 +358,7 @@ cursor:pointer;
 
 
 
-/* BOTTOM MENU */
+/* BOTTOM */
 
 
 .bottom{
@@ -540,8 +381,6 @@ padding:15px;
 
 border-top:1px solid #ddd;
 
-z-index:99;
-
 }
 
 
@@ -550,9 +389,9 @@ z-index:99;
 
 text-align:center;
 
-cursor:pointer;
-
 font-weight:bold;
+
+cursor:pointer;
 
 }
 
@@ -570,11 +409,10 @@ color:white;
 
 
 
-.dark .wallet-card,
-.dark .box,
-.dark .menu-item,
+.dark .wallet,
+.dark .mode-box,
+.dark .actions div,
 .dark .page,
-.dark .setting-item,
 .dark .bottom{
 
 background:#333;
@@ -585,7 +423,9 @@ color:white;
 
 
 
-.dark .menu-item p{
+.dark #historyList li{
+
+background:#444;
 
 color:white;
 
@@ -594,29 +434,48 @@ color:white;
 
 
 
-/* MOBILE RESPONSIVE */
+
+/* REAL MODE STYLE */
+
+
+.real-mode{
+
+background:#e8f5ff;
+
+border:2px solid #2196f3;
+
+}
+
+
+
+.simulation-mode{
+
+background:#eaffea;
+
+border:2px solid #2ecc71;
+
+}
+
+
+
+
+
+
+/* MOBILE */
 
 
 @media(max-width:600px){
 
 
-.header{
+header{
 
-padding:20px 15px;
-
-}
-
-
-
-.profile h2{
-
-font-size:20px;
+padding:20px;
 
 }
 
 
 
-.wallet-card h1{
+.wallet h1{
 
 font-size:32px;
 
@@ -624,9 +483,7 @@ font-size:32px;
 
 
 
-.menu{
-
-grid-template-columns:repeat(3,1fr);
+.actions{
 
 gap:10px;
 
@@ -634,7 +491,7 @@ gap:10px;
 
 
 
-.menu-item{
+.actions div{
 
 padding:15px 5px;
 
@@ -644,75 +501,15 @@ font-size:13px;
 
 
 
-.icon{
-
-width:45px;
-
-height:45px;
-
-font-size:22px;
-
-}
-
-
-
 .bottom{
 
-padding:12px 5px;
+font-size:13px;
 
 }
 
 
-
 }
 
-
-
-
-/* LIST */
-
-
-#historyList{
-
-list-style:none;
-
-padding:0;
-
-}
-
-
-
-#historyList li{
-
-background:#f8f8f8;
-
-margin:10px 0;
-
-padding:15px;
-
-border-radius:15px;
-
-}
-
-
-
-.dark #historyList li{
-
-background:#444;
-
-}
-
-
-
-
-/* FILE INPUT */
-
-
-input[type="file"]{
-
-font-size:12px;
-
-}
 
 
 
@@ -721,19 +518,19 @@ font-size:12px;
 /* ANIMATION */
 
 
-.menu-item,
-.wallet-card,
-.box{
+.wallet,
+.mode-box,
+.actions div,
+.page{
 
 transition:.3s;
 
 }
 
 
-.menu-item:hover,
-.wallet-card:hover,
-.box:hover{
 
-transform:translateY(-3px);
+.actions div:hover{
+
+transform:translateY(-5px);
 
 }
