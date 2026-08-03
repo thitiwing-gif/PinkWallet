@@ -117,3 +117,43 @@ margin:20px 0;
 border:none;
 border-top:1px solid #eee;
 }
+.menu{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+margin:20px;
+}
+
+.menu-item{
+background:white;
+padding:18px;
+border-radius:18px;
+text-align:center;
+box-shadow:0 6px 18px rgba(0,0,0,.08);
+cursor:pointer;
+transition:.2s;
+}
+
+.menu-item:hover{
+transform:translateY(-4px);
+}
+
+.icon{
+width:55px;
+height:55px;
+margin:auto;
+border-radius:50%;
+background:#ff5aa5;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+margin-bottom:10px;
+}
+
+.menu-item p{
+margin:0;
+font-weight:bold;
+color:#444;
+}
