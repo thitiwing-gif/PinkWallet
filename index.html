@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pink Wallet</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+<div class="header">
+<h1>💗 Pink Wallet</h1>
+<p>โหมดจำลอง</p>
+</div>
+
+<div class="card">
+
+<div class="balance-title">
+ยอดเงินคงเหลือ
+</div>
+
+<div id="balance" class="balance">
+฿10,000.00
+</div>
+
+<button id="toggleBalance">
+👁 ซ่อนยอดเงิน
+</button>
+
+<hr>
+
+<p>🏦 Pink Bank</p>
+<p>123-4-56789-0</p>
+
+<p>💚 081-234-5678</p>
+
+</div>
+
+<div class="menu">
+
+<button onclick="deposit()">
+➕ ฝาก
+</button>
+
+<button onclick="withdraw()">
+➖ ถอน
+</button>
+
+<button onclick="transfer()">
+↗️ โอน
+</button>
+
+<button onclick="receive()">
+📥 รับ
+</button>
+
+</div>
+
+<div class="history">
+
+<h3>ธุรกรรมล่าสุด</h3>
+
+<ul id="historyList"></ul>
+
+</div>
+
+<div class="bottom">
+
+<div>🏠<br>หน้าหลัก</div>
+<div>📋<br>รายการ</div>
+<div>📷<br>QR</div>
+<div>⚙️<br>ตั้งค่า</div>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
