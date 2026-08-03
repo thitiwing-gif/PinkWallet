@@ -1,10 +1,11 @@
-// Pink Wallet v0.7
+// Pink Wallet v0.8
 
-let balance = Number(localStorage.getItem("balance")) || 10000;
+let balance =
+Number(localStorage.getItem("balance")) || 10000;
 
-let history = JSON.parse(
-localStorage.getItem("history")
-) || [
+
+let history =
+JSON.parse(localStorage.getItem("history")) || [
 "💰 เริ่มต้นระบบ ฿10,000"
 ];
 
@@ -36,7 +37,21 @@ localStorage.setItem(
 username
 );
 
+
 }
+
+
+
+
+
+function getTime(){
+
+let now = new Date();
+
+return now.toLocaleString("th-TH");
+
+}
+
 
 
 
@@ -56,7 +71,9 @@ hideBalance
 ?
 "฿••••••"
 :
-"฿" + balance.toLocaleString("th-TH") + ".00";
+"฿" +
+balance.toLocaleString("th-TH") +
+".00";
 
 }
 
@@ -68,9 +85,11 @@ document.getElementById("username");
 
 if(nameBox){
 
-nameBox.innerHTML = username;
+nameBox.innerHTML =
+username;
 
 }
+
 
 
 
@@ -83,11 +102,12 @@ if(list){
 list.innerHTML="";
 
 
-history.slice().reverse().forEach(item=>{
+history.slice().reverse()
+.forEach(item=>{
 
 
 list.innerHTML +=
-`<li>${item}</li>`;
+"<li>"+item+"</li>";
 
 
 });
@@ -127,7 +147,6 @@ alert("กรุณาใส่ชื่อและ PIN 4 หลัก");
 
 return;
 
-
 }
 
 
@@ -138,6 +157,13 @@ username=name;
 localStorage.setItem(
 "login",
 "true"
+);
+
+
+
+localStorage.setItem(
+"pin",
+pin
 );
 
 
@@ -156,20 +182,13 @@ updateUI();
 
 
 }
-
-
-
-
-
+// ซ่อน / แสดงยอดเงิน
 
 function toggleBalance(){
 
-
-hideBalance=!hideBalance;
-
+hideBalance = !hideBalance;
 
 updateUI();
-
 
 }
 
@@ -177,21 +196,19 @@ updateUI();
 
 
 
-
+// ฝากเงิน
 
 function deposit(){
-
 
 balance +=100;
 
 
 history.push(
-"➕ ฝาก +100 บาท"
+"➕ ฝาก +100 บาท | " + getTime()
 );
 
 
 updateUI();
-
 
 }
 
@@ -200,11 +217,12 @@ updateUI();
 
 
 
+// ถอนเงิน
 
 function withdraw(){
 
 
-if(balance<100){
+if(balance < 100){
 
 alert("ยอดเงินไม่พอ");
 
@@ -217,7 +235,7 @@ balance -=100;
 
 
 history.push(
-"➖ ถอน -100 บาท"
+"➖ ถอน -100 บาท | " + getTime()
 );
 
 
@@ -231,10 +249,13 @@ updateUI();
 
 
 
+
+// โอนเงิน
+
 function transfer(){
 
 
-if(balance<50){
+if(balance < 50){
 
 alert("ยอดเงินไม่พอ");
 
@@ -243,11 +264,11 @@ return;
 }
 
 
-balance-=50;
+balance -=50;
 
 
 history.push(
-"↗️ โอน -50 บาท"
+"↗️ โอน -50 บาท | " + getTime()
 );
 
 
@@ -260,15 +281,17 @@ updateUI();
 
 
 
+
+// รับเงิน
 
 function receive(){
 
 
-balance+=50;
+balance +=50;
 
 
 history.push(
-"📥 รับ +50 บาท"
+"📥 รับ +50 บาท | " + getTime()
 );
 
 
@@ -277,25 +300,40 @@ updateUI();
 
 }
 
-// เปลี่ยนชื่อผู้ใช้
+
+
+
+
+
+
+// เปลี่ยนชื่อ
 
 function changeName(){
 
-let name = prompt(
+
+let name =
+prompt(
 "ใส่ชื่อใหม่",
 username
 );
 
 
+
 if(name){
+
 
 username=name;
 
+
 updateUI();
 
-}
 
 }
+
+
+}
+
+
 
 
 
@@ -323,7 +361,9 @@ upload.addEventListener(
 function(){
 
 
-let file=this.files[0];
+let file =
+this.files[0];
+
 
 
 if(file){
@@ -337,43 +377,40 @@ new FileReader();
 reader.onload=function(e){
 
 
+localStorage.setItem(
+"profileImage",
+e.target.result
+);
+
+
+
 let img =
-e.target.result;
-
-
-let profile =
 document.getElementById(
 "profileImage"
 );
 
 
-let card =
+
+let img2 =
 document.getElementById(
 "profileImageCard"
 );
 
 
 
-if(profile){
+if(img){
 
-profile.src=img;
-
-}
-
-
-
-if(card){
-
-card.src=img;
+img.src=e.target.result;
 
 }
 
 
 
-localStorage.setItem(
-"profileImage",
-img
-);
+if(img2){
+
+img2.src=e.target.result;
+
+}
 
 
 
@@ -393,6 +430,13 @@ reader.readAsDataURL(file);
 }
 
 
+});
+
+// โหลดรูปเดิม
+
+window.addEventListener(
+"load",
+function(){
 
 let savedImage =
 localStorage.getItem(
@@ -400,35 +444,33 @@ localStorage.getItem(
 );
 
 
-
 if(savedImage){
 
 
-let profile =
+let img =
 document.getElementById(
 "profileImage"
 );
 
 
-
-let card =
+let img2 =
 document.getElementById(
 "profileImageCard"
 );
 
 
 
-if(profile){
+if(img){
 
-profile.src=savedImage;
+img.src=savedImage;
 
 }
 
 
 
-if(card){
+if(img2){
 
-card.src=savedImage;
+img2.src=savedImage;
 
 }
 
@@ -447,140 +489,12 @@ updateUI();
 
 
 
-// กราฟ
-
-document.addEventListener(
-"DOMContentLoaded",
-function(){
-
-
-let ctx =
-document.getElementById(
-"moneyChart"
-);
-
-
-
-if(ctx && typeof Chart !== "undefined"){
-
-
-new Chart(
-ctx,
-{
-
-type:"doughnut",
-
-data:{
-
-labels:[
-"รายรับ",
-"รายจ่าย"
-],
-
-datasets:[{
-
-data:[
-7000,
-3000
-]
-
-}]
-
-},
-
-
-options:{
-
-responsive:true
-
-}
-
-
-}
-
-);
-
-
-}
-
-
-});
-
-
-
-
-
-
-
-
-// หน้าเมนู
-
-
-function hideAll(){
-
-
-let pages=[
-
-".card",
-".menu",
-".chart-card",
-".history",
-"#historyPage",
-"#qrPage",
-"#settingsPage"
-
-];
-
-
-
-pages.forEach(function(p){
-
-
-let el=document.querySelector(p);
-
-
-if(el){
-
-el.style.display="none";
-
-}
-
-
-});
-
-
-}
-
-
-
-
-
-function showHome(){
-
-
-hideAll();
-
-
-document.querySelector(".card").style.display="block";
-
-document.querySelector(".menu").style.display="grid";
-
-document.querySelector(".chart-card").style.display="block";
-
-document.querySelector(".history").style.display="block";
-
-
-}
-
-
-
-
-
+// แสดงหน้ารายการ
 
 function showHistory(){
 
 
-hideAll();
+hidePages();
 
 
 let page =
@@ -590,6 +504,7 @@ document.getElementById(
 
 
 if(page){
+
 
 page.style.display="block";
 
@@ -603,11 +518,12 @@ document.getElementById(
 list.innerHTML="";
 
 
-history.forEach(function(item){
+history.slice().reverse()
+.forEach(item=>{
 
 
 list.innerHTML +=
-`<li>${item}</li>`;
+"<li>"+item+"</li>";
 
 
 });
@@ -623,54 +539,120 @@ list.innerHTML +=
 
 
 
+// หน้า Home
+
+function showHome(){
+
+
+hidePages();
+
+
+document.querySelector(".card").style.display="block";
+
+document.querySelector(".profile-card").style.display="flex";
+
+document.querySelector(".menu").style.display="grid";
+
+document.querySelector(".history").style.display="block";
+
+document.querySelector(".chart-card").style.display="block";
+
+
+}
+
+
+
+
+
+
+// หน้า QR
+
 function showQR(){
 
 
-hideAll();
+hidePages();
 
 
-let page =
+let qr =
 document.getElementById(
 "qrPage"
 );
 
 
+if(qr){
 
-if(page){
-
-page.style.display="block";
-
-}
-
+qr.style.display="block";
 
 }
 
 
+}
 
 
 
 
+
+
+
+// หน้า Settings
 
 function showSettings(){
 
 
-hideAll();
+hidePages();
 
 
-let page =
+let setting =
 document.getElementById(
 "settingsPage"
 );
 
 
 
+if(setting){
+
+setting.style.display="block";
+
+}
+
+
+}
+
+
+
+
+
+
+
+function hidePages(){
+
+
+let pages=[
+
+"#historyPage",
+"#qrPage",
+"#settingsPage"
+
+];
+
+
+pages.forEach(function(item){
+
+
+let page =
+document.querySelector(item);
+
+
 if(page){
 
-page.style.display="block";
+page.style.display="none";
 
 }
 
 
+});
+
+
 }
 
 
@@ -679,6 +661,7 @@ page.style.display="block";
 
 
 
+// คัดลอกบัญชี
 
 function copyAccount(){
 
@@ -702,6 +685,8 @@ alert(
 
 
 
+// เปลี่ยนธีม
+
 function toggleTheme(){
 
 
@@ -719,26 +704,27 @@ document.body.classList.toggle(
 
 
 
+// ล้างข้อมูล
+
 function clearData(){
 
 
-let confirmDelete =
+let ok =
 confirm(
 "ต้องการล้างข้อมูลทั้งหมดหรือไม่?"
 );
 
 
 
-if(confirmDelete){
+if(ok){
 
 
 localStorage.clear();
 
 
 alert(
-"ล้างข้อมูลแล้ว"
+"ล้างข้อมูลเรียบร้อย"
 );
-
 
 
 location.reload();
@@ -755,11 +741,9 @@ location.reload();
 
 
 
-// เปิดแอปอัตโนมัติถ้าเคย Login
+// ตรวจ PIN ตอนเปิดใหม่
 
-window.addEventListener(
-"load",
-function(){
+window.onload=function(){
 
 
 let login =
@@ -768,11 +752,10 @@ localStorage.getItem(
 );
 
 
-
 if(login==="true"){
 
 
-let lp =
+let loginPage =
 document.getElementById(
 "loginPage"
 );
@@ -785,12 +768,11 @@ document.getElementById(
 
 
 
-if(lp){
+if(loginPage){
 
-lp.style.display="none";
+loginPage.style.display="none";
 
 }
-
 
 
 if(app){
@@ -800,11 +782,9 @@ app.style.display="block";
 }
 
 
+
 }
 
 
 
-updateUI();
-
-
-});
+};
